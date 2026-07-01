@@ -125,6 +125,9 @@ def load_template(name, template_dir='templates'):
 
 def render_template(tmpl, **kwargs):
     for key, val in kwargs.items():
+        # Triple braces = unescaped (for HTML content)
+        tmpl = tmpl.replace(f'{{{{{{ {key} }}}}}}', str(val))
+        # Double braces = regular replacement
         tmpl = tmpl.replace(f'{{{{ {key} }}}}', str(val))
     return tmpl
 
@@ -168,19 +171,25 @@ def build_site():
     post_tmpl = load_template('post')
     
     # ── Index page ──
-    posts_html = ''
+    hero = f'''<section class="hero">
+        <h1>{site['name']}</h1>
+        <p>{site['tagline']}</p>
+    </section>'''
+    
+    posts_html = '<section id="guides" class="posts-grid">\n'
     for p in posts[:12]:
         posts_html += f'''<article class="post-card">
         <h2><a href="{BASE_PATH}/posts/{p['slug']}/">{p.get('title', 'Untitled')}</a></h2>
         <time datetime="{p.get('date', '')}">{p.get('date', '')}</time>
         <p>{p.get('excerpt', '')}</p>
         </article>\n'''
+    posts_html += '</section>'
     
     index_html = render_template(index_tmpl, posts=posts_html)
     full = render_template(base, site_name=site['name'], site_tagline=site['tagline'],
                            site_description=site['description'], content=index_html,
                            site_url=site['url'], page_title=site['name'],
-                           base_path=BASE_PATH)
+                           base_path=BASE_PATH, hero=hero)
     
     with open(f'{out_dir}/index.html', 'w') as f:
         f.write(full)
@@ -198,7 +207,7 @@ def build_site():
                                site_description=site['description'], content=post_content,
                                site_url=site['url'],
                                page_title=f"{p.get('title', '')} — {site['name']}",
-                               base_path=BASE_PATH)
+                               base_path=BASE_PATH, hero='')
         
         post_dir = f'{out_dir}/posts/{p["slug"]}'
         os.makedirs(post_dir, exist_ok=True)
