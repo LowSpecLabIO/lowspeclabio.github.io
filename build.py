@@ -137,7 +137,7 @@ def load_config(path='config.yaml'):
     with open(path) as f:
         return yaml.safe_load(f)
 
-BASE_PATH = '/lowspelab.github.io'  # GitHub project page subpath
+BASE_PATH = ''  # Org user page serves at root — no subpath
 
 def collect_posts(content_dir='content/posts'):
     posts = []

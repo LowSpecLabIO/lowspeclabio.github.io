@@ -1,7 +1,7 @@
 # Site settings
 site:
   name: LowSpecLab
-  url: https://lowspeclab.github.io/lowspelab.github.io
+  url: https://lowspeclabio.github.io
   description: Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.
   tagline: Maximum FPS, minimum spend.
   author: LowSpecLab
