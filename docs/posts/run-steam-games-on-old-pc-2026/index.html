@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Run Steam Games on a 10-Year-Old PC in 2026 — LowSpecLab</title>
+    <meta name="description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <link rel="canonical" href="https://lowspelab.github.io">
+    <meta property="og:title" content="How to Run Steam Games on a 10-Year-Old PC in 2026 — LowSpecLab">
+    <meta property="og:description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lowspelab.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" type="application/rss+xml" title="LowSpecLab" href="/feed.xml">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="sitemap" href="/sitemap.xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "LowSpecLab",
+        "url": "https://lowspelab.github.io",
+        "description": "Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">LowSpecLab</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#guides">Guides</a>
+                <a href="/feed.xml">RSS</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article class="post-full">
+    <header class="post-header">
+        <h1>How to Run Steam Games on a 10-Year-Old PC in 2026</h1>
+        <div class="post-meta">
+            <time datetime="2026-07-01">2026-07-01</time>
+            <span class="category">Budget Gaming</span>
+        </div>
+    </header>
+    <div class="post-body">
+{<p>Your rig is old. That doesn&#x27;t mean it&#x27;s dead.</p>
+<p>Most &quot;can I run it&quot; advice stops at comparing your specs to the minimum requirements and shrugging. That&#x27;s lazy. The truth is, you can squeeze surprising performance out of hardware from 2016 if you know where the bottlenecks actually are and how to work around them.</p>
+<h2>Know What You&#x27;re Working With</h2>
+<p>Before changing anything, figure out what&#x27;s actually slow:</p>
+<ul>
+<li><strong>CPU from 2015-2016</strong> (i5-6400, i5-6500, FX-8350): Still viable for most games. The bottleneck is almost never the CPU — it&#x27;s the GPU or storage.</li>
+<li><strong>8GB DDR3/DDR4 RAM</strong>: Tight but workable. Close background apps, disable browser tabs, and you&#x27;re fine for 90% of indie and older AAA titles.</li>
+<li><strong>Mechanical hard drive</strong>: This is your actual enemy. A $20 SATA SSD will cut load times by 60-80% and eliminate stutter in open-world games that stream assets.</li>
+</ul>
+<h2>The Quick Wins That Actually Matter</h2>
+<p><strong>1. Move Steam to an SSD.</strong> If your boot drive is an SSD but Steam is on a spinning disk, migrate it. Steam has a built-in &quot;move install folder&quot; feature — right-click any game, Properties → Installed Files → Move. Open-world games (Fallout 4, Witcher 3, Cyberpunk on low) will stutter noticeably less.</p>
+<p><strong>2. Drop resolution before dropping settings.</strong> Running at 900p or 768p instead of 1080p gives you a 30-50% frame rate boost with less visual degradation than turning everything to Low. Most monitors handle sub-native scaling reasonably well.</p>
+<p><strong>3. Use the Steam launch options that matter:</strong></p>
+<ul>
+<li><code>-dx12</code> or <code>-vulkan</code> — if the game supports Vulkan, use it. It&#x27;s consistently faster on older AMD GPUs and comparable on older NVIDIA.</li>
+<li><code>-windowed</code> or <code>-borderless</code> — some engines run better windowed because the compositor handles frame pacing.</li>
+<li><code>-low</code> or <code>-nod3d9ex</code> — game-specific, but worth checking the <a href="https://www.pcgamingwiki.com" target="_blank" rel="noopener">PCGamingWiki</a> page for any game you&#x27;re trying to run.</li>
+</ul>
+<h2>GPU-Specific Tweaks</h2>
+<p><strong>NVIDIA (GTX 900/1000 series):</strong></p>
+<ul>
+<li>Force &quot;Prefer maximum performance&quot; in nvidia-settings for the game executable</li>
+<li>Set &quot;Power management mode&quot; to maximum in xorg.conf or nvidia-settings</li>
+<li>If you&#x27;re on Linux, make sure <code>__GL_SHADER_DISK_CACHE=1</code> is set — shader compilation stutters disappear after the first run</li>
+</ul>
+<p><strong>AMD (RX 400/500 series):</strong></p>
+<ul>
+<li>Use RADV (Mesa) on Linux, not the AMDGPU-PRO driver — RADV is faster for gaming</li>
+<li>Set <code>RADV_PERFTEST=gpl</code> for GPL emulation — shader compile speedup</li>
+<li>Mesa&#x27;s ACO compiler is already default and fast</li>
+</ul>
+<h2>The &quot;Will It Run&quot; Test</h2>
+<p>Don&#x27;t guess. Install the game, open the Steam overlay (Shift+Tab), enable the FPS counter, and play for 10 minutes. If you&#x27;re getting:</p>
+<ul>
+<li><strong>45+ FPS</strong>: You&#x27;re fine. Stop tweaking and play.</li>
+<li><strong>25-45 FPS</strong>: Drop resolution one step. Try Vulkan. Check for config-file tweaks on PCGamingWiki.</li>
+<li><strong>Under 25 FPS</strong>: Check if your GPU is thermal throttling (monitor temps with <code>nvtop</code> or <code>radeontop</code>). If not, this game might genuinely be beyond your hardware — but try proton-ge or different Proton versions first on Linux.</li>
+</ul>
+<h2>Storage Is Cheaper Than You Think</h2>
+<p>If you&#x27;re still running games off a mechanical drive, fix that first. A 500GB SATA SSD costs under $25 used or $35 new. It&#x27;s the single best upgrade for an old PC — more impactful for game performance than a RAM upgrade and cheaper than a new GPU.</p>
+<p>You don&#x27;t need a new computer. You need to stop wasting the one you have.</p>}
+    </div>
+</article>
+
+    </main>
+    <footer>
+        <p>&copy; 2026 LowSpecLab. Maximum FPS, minimum spend.</p>
+    </footer>
+</body>
+</html>

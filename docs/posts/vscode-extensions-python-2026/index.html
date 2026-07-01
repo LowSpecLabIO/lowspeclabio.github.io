@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 VS Code Extensions That Actually Speed Up Python Development — LowSpecLab</title>
+    <meta name="description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <link rel="canonical" href="https://lowspelab.github.io">
+    <meta property="og:title" content="5 VS Code Extensions That Actually Speed Up Python Development — LowSpecLab">
+    <meta property="og:description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lowspelab.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" type="application/rss+xml" title="LowSpecLab" href="/feed.xml">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="sitemap" href="/sitemap.xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "LowSpecLab",
+        "url": "https://lowspelab.github.io",
+        "description": "Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">LowSpecLab</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#guides">Guides</a>
+                <a href="/feed.xml">RSS</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article class="post-full">
+    <header class="post-header">
+        <h1>5 VS Code Extensions That Actually Speed Up Python Development</h1>
+        <div class="post-meta">
+            <time datetime="2026-07-01">2026-07-01</time>
+            <span class="category">Coding IDEs</span>
+        </div>
+    </header>
+    <div class="post-body">
+{<p>Most &quot;must-have VS Code extension&quot; lists are popularity contests — they recommend Pylance, GitLens, and five themes you&#x27;ll try once. Here are five extensions that genuinely save time when you&#x27;re writing Python, with specifics on what they do that the defaults don&#x27;t.</p>
+<h2>1. Ruff</h2>
+<p>Not a linter. Not a formatter. Both, simultaneously, and 10-100x faster than the alternatives.</p>
+<p>Ruff replaces flake8, isort, pyupgrade, and half a dozen other tools with a single Rust binary. It runs in under 10ms on most projects, which means it actually runs on save without you noticing the delay.</p>
+<p><strong>Setup:</strong> Install the &quot;Ruff&quot; extension (charliermarsh.ruff). That&#x27;s it. It auto-detects your pyproject.toml ruff config, handles linting and formatting, and shows inline warnings.</p>
+<p><strong>What it replaces:</strong> Flake8, isort, Black, pylint (for style rules), pyupgrade, pydocstyle.</p>
+<p><strong>Why the defaults aren&#x27;t enough:</strong> Pylance catches type errors but doesn&#x27;t enforce style. The built-in Python extension uses slower tools. Ruff gives you instant feedback on both.</p>
+<h2>2. Python Test Explorer</h2>
+<p>The built-in test runner works. The Test Explorer makes it visual.</p>
+<p>See a tree of all your tests, run individual tests or suites with one click, see failures inline with diffs. If you write tests (you should), this removes the friction between &quot;write test&quot; and &quot;run test.&quot;</p>
+<p><strong>Setup:</strong> Install &quot;Python Test Explorer&quot; (littlefoxteam.vscode-python-test-adapter). Works with pytest and unittest out of the box.</p>
+<h2>3. Error Lens</h2>
+<p>VS Code shows diagnostics as squiggly underlines with details on hover. Error Lens inlines the error message directly next to the line that has it.</p>
+<p>This sounds trivial. It isn&#x27;t. When you&#x27;re iterating fast, the difference between &quot;see error → hover → read popup → fix&quot; and &quot;see error right next to the code → fix&quot; adds up to real time savings over a day.</p>
+<p>No config needed. Install it, it works.</p>
+<h2>4. Even Better TOML</h2>
+<p>If your project uses pyproject.toml (it should in 2026 — setup.py is legacy), you need syntax highlighting and validation for TOML files. This extension provides both, plus auto-completion for known pyproject.toml keys.</p>
+<p>It also catches TOML syntax errors before you waste a <code>pip install</code> cycle wondering why your config isn&#x27;t being picked up.</p>
+<h2>5. Shellcheck</h2>
+<p>Not Python-specific, but if you&#x27;re writing shell scripts for deployment, Docker entrypoints, or CI pipelines (and you are), Shellcheck catches bugs that would silently fail at runtime:</p>
+<ul>
+<li>Unquoted variables that break on paths with spaces</li>
+<li><code>[[ ]]</code> vs <code>[ ]</code> confusion</li>
+<li>Common command argument mistakes</li>
+</ul>
+<p>Install it, enable it, and stop shipping shell scripts with latent bugs.</p>
+<h2>What Not to Install</h2>
+<p>Skip these — they slow down VS Code or add noise:</p>
+<ul>
+<li><strong>GitLens (full install)</strong>: The free tier&#x27;s useful features are now in the paid tier. The remaining free features aren&#x27;t worth the extension load time. Use VS Code&#x27;s built-in Git view instead.</li>
+<li><strong>Auto-import on every extension</strong>: Pick one (Ruff handles this) and disable it in everything else. Multiple import sources fighting each other creates chaos.</li>
+<li><strong>AI completion extensions you&#x27;re not actively using</strong>: Every AI extension you have enabled is parsing your code on every keystroke for context. If you&#x27;re not using it, disable it. Your CPU will thank you.</li>
+</ul>
+<p>Five extensions, not twenty. Less is faster.</p>}
+    </div>
+</article>
+
+    </main>
+    <footer>
+        <p>&copy; 2026 LowSpecLab. Maximum FPS, minimum spend.</p>
+    </footer>
+</body>
+</html>

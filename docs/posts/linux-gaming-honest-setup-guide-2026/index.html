@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Gaming in 2026: The Honest Setup Guide — LowSpecLab</title>
+    <meta name="description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <link rel="canonical" href="https://lowspelab.github.io">
+    <meta property="og:title" content="Linux Gaming in 2026: The Honest Setup Guide — LowSpecLab">
+    <meta property="og:description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lowspelab.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" type="application/rss+xml" title="LowSpecLab" href="/feed.xml">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="sitemap" href="/sitemap.xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "LowSpecLab",
+        "url": "https://lowspelab.github.io",
+        "description": "Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune."
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">LowSpecLab</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#guides">Guides</a>
+                <a href="/feed.xml">RSS</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article class="post-full">
+    <header class="post-header">
+        <h1>Linux Gaming in 2026: The Honest Setup Guide</h1>
+        <div class="post-meta">
+            <time datetime="2026-07-01">2026-07-01</time>
+            <span class="category">Linux Gaming</span>
+        </div>
+    </header>
+    <div class="post-body">
+{<p>Linux gaming isn&#x27;t experimental anymore. It&#x27;s just gaming with an extra step or two during setup. Here&#x27;s the real setup — no hype, no &quot;it just works&quot; lies, no pretending every game runs perfectly.</p>
+<h2>The Basics</h2>
+<p><strong>You need Steam and Proton.</strong> That&#x27;s it for 80% of games. Steam ships Proton built-in, and the &quot;Proton Experimental&quot; channel gets you the latest fixes without waiting for stable releases.</p>
+<p><strong>Enable Proton for all titles:</strong> Steam → Settings → Compatibility → Enable &quot;Enable compatibility for all titles&quot; and select &quot;Proton Experimental.&quot;</p>
+<p>That&#x27;s the setup. Seriously.</p>
+<h2>Distros That Don&#x27;t Waste Your Time</h2>
+<p>Pick one of these and stop overthinking:</p>
+<ul>
+<li><strong>CachyOS</strong>: Arch-based, optimized kernels, gaming packages pre-configured. Best out-of-box experience if you&#x27;re comfortable with Arch-adjacent tools.</li>
+<li><strong>Nobara</strong>: Fedora-based, built specifically for gaming by a Red Hat engineer. Fixes the things Fedora gets wrong for gaming.</li>
+<li><strong>SteamOS (Holo)</strong>: If you want the console experience. Great on a TV, limiting as a daily driver.</li>
+<li><strong>Pop!_OS</strong>: NVIDIA-friendly. If you have an NVIDIA GPU and don&#x27;t want to think about driver setup, this is it.</li>
+</ul>
+<p>Don&#x27;t distro-hop. Pick one, learn it, play games.</p>
+<h2>Proton Versions: When to Switch</h2>
+<p>The default Proton Experimental works for most games. When it doesn&#x27;t:</p>
+<ul>
+<li><strong>Proton-GE</strong> (GloriousEggroll): Includes media fixes and patched FFmpeg. If a game has video playback issues (FMVs black or choppy), try this. Install via <a href="https://github.com/DavidoTek/Proton-Up-Qt" target="_blank" rel="noopener">ProtonUp-Qt</a>.</li>
+<li><strong>Proton Hotfix</strong>: Valve&#x27;s bleeding edge. Sometimes fixes a specific game days before Experimental catches up. Check <a href="https://www.protondb.com" target="_blank" rel="noopener">ProtonDB</a> for game-specific recommendations.</li>
+</ul>
+<h2>The Tools You Actually Need</h2>
+<ul>
+<li><strong>ProtonUp-Qt</strong>: GUI for installing custom Proton versions. Easier than manual.</li>
+<li><strong>Mangohud</strong>: In-game overlay showing FPS, frametimes, CPU/GPU usage. <code>mangohud %command%</code> in Steam launch options.</li>
+<li><strong>Gamescope</strong>: Micro-compositor for fullscreen games. Fixes tearing and scaling issues. <code>gamescope %command%</code> in launch options.</li>
+<li><strong>Lutris</strong>: For non-Steam games (GOG, Epic). Whether it works for a specific title is a coin flip, but it&#x27;s the best option.</li>
+</ul>
+<h2>What Doesn&#x27;t Work</h2>
+<ul>
+<li><strong>Kernel-level anti-cheat</strong> (Valorant, Destiny 2, some EA titles). Not a Linux problem, not a Proton problem — these games explicitly check for Windows and refuse to run. No workaround except dual-boot.</li>
+<li><strong>Some Denuvo titles</strong>: Denuvo is cracking under its own weight and some implementations break on Proton. Check ProtonDB before buying.</li>
+<li><strong>Games requiring specific Windows media features</strong>: Proton-GE usually fixes this.</li>
+</ul>
+<h2>Performance vs Windows</h2>
+<p>On the same hardware, Linux gaming in 2026 is:</p>
+<ul>
+<li><strong>Equal or faster</strong> for Vulkan titles (Doom Eternal, No Man&#x27;s Sky, most native games)</li>
+<li><strong>Within 5-10%</strong> for most DX11/DX12 titles via DXVK/VKD3D</li>
+<li><strong>Slower</strong> for some DX12 games with complex async compute (some scenes in Cyberpunk, Alan Wake 2)</li>
+</ul>
+<p>The gap is real but shrinking quarterly. If you&#x27;re worried about the last 5%, you&#x27;re overthinking it.</p>
+<h2>Quick Launch Options Cheat Sheet</h2>
+<p>Add these to Steam → game → Properties → Launch Options:</p>
+<pre><code># FPS overlay
+mangohud %command%
+
+# Force Vulkan (for games that support it)
+DXVK_ASYNC=1 %command%
+
+# Shader cache (NVIDIA)
+__GL_SHADER_DISK_CACHE=1 __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1 %command%
+
+# Limit FPS to reduce GPU load
+MANGOHUD_CONFIG=fps_limit=60 %command%</code></pre>
+<p>Linux gaming works. It works better every month. Stop reading about it and start playing.</p>}
+    </div>
+</article>
+
+    </main>
+    <footer>
+        <p>&copy; 2026 LowSpecLab. Maximum FPS, minimum spend.</p>
+    </footer>
+</body>
+</html>

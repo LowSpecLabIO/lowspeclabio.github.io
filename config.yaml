@@ -1,0 +1,18 @@
+# Site settings
+site:
+  name: LowSpecLab
+  url: https://lowspelab.github.io
+  description: Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.
+  tagline: Maximum FPS, minimum spend.
+  author: LowSpecLab
+  language: en
+
+# Content settings
+content:
+  posts_per_page: 12
+  excerpt_length: 200
+
+# Social/SEO
+seo:
+  og_image: /images/og-default.png
+  twitter_handle: ""
