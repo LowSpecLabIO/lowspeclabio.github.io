@@ -35,37 +35,125 @@
     <div class="post-body">
 <p>Most &quot;must-have VS Code extension&quot; lists are popularity contests — they recommend Pylance, GitLens, and five themes you&#x27;ll try once. Here are five extensions that genuinely save time when you&#x27;re writing Python, with specifics on what they do that the defaults don&#x27;t.</p>
 <h2>1. Ruff</h2>
-<p>Not a linter. Not a formatter. Both, simultaneously, and 10-100x faster than the alternatives.</p>
-<p>Ruff replaces flake8, isort, pyupgrade, and half a dozen other tools with a single Rust binary. It runs in under 10ms on most projects, which means it actually runs on save without you noticing the delay.</p>
-<p><strong>Setup:</strong> Install the &quot;Ruff&quot; extension (charliermarsh.ruff). That&#x27;s it. It auto-detects your pyproject.toml ruff config, handles linting and formatting, and shows inline warnings.</p>
-<p><strong>What it replaces:</strong> Flake8, isort, Black, pylint (for style rules), pyupgrade, pydocstyle.</p>
-<p><strong>Why the defaults aren&#x27;t enough:</strong> Pylance catches type errors but doesn&#x27;t enforce style. The built-in Python extension uses slower tools. Ruff gives you instant feedback on both.</p>
+<p>Not a linter. Not a formatter. Both, simultaneously, and 10–100x faster than the alternatives.</p>
+<p>Ruff replaces flake8, isort, pyupgrade, pydocstyle, and pylint (for style rules) with a single Rust binary. It runs in under 10ms on most projects where flake8 takes 200–2000ms. The difference is noticeable: save a file and the diagnostics appear instantly, not after a perceptible delay.</p>
+<p><strong>Setup:</strong> Install the &quot;Ruff&quot; extension (publisher: charliermarsh). It auto-detects <code>pyproject.toml</code> or <code>ruff.toml</code> in your project root. That&#x27;s all — no extra config needed for basic use.</p>
+<p><strong>What it replaces:</strong></p>
+<p>| Tool | What Ruff covers |</p>
+<p>|------|-----------------|</p>
+<p>| flake8 | All rules, 10–100x faster |</p>
+<p>| isort | Import sorting |</p>
+<p>| Black | Formatting (via <code>ruff format</code>) |</p>
+<p>| pyupgrade | Modern syntax adoption |</p>
+<p>| pydocstyle | Docstring style |</p>
+<p>| pylint | Subset of rules (style only) |</p>
+<p><strong>Real pyproject.toml setup:</strong></p>
+<pre><code>[tool.ruff]
+line-length = 100
+target-version = &quot;py311&quot;
+
+[tool.ruff.lint]
+select = [&quot;E&quot;, &quot;F&quot;, &quot;W&quot;, &quot;I&quot;, &quot;N&quot;, &quot;UP&quot;, &quot;B&quot;, &quot;C4&quot;, &quot;SIM&quot;]
+ignore = [&quot;E501&quot;]  # line-too-long handled by formatter
+
+[tool.ruff.lint.isort]
+known-first-party = [&quot;src&quot;]</code></pre>
+<p>The <code>E501</code> ignore is critical — Ruff&#x27;s formatter handles line length, so the linter doesn&#x27;t need to duplicate that check. Run <code>ruff format</code> instead of <code>black</code> in your pre-commit or CI.</p>
+<p><strong>The one gotcha:</strong> Ruff doesn&#x27;t do type checking. Pylance is still worth keeping for its semantic analysis (unused imports, type errors, autocomplete quality). Ruff and Pylance complement each other — Ruff catches style issues at machine speed, Pylance catches actual bugs.</p>
 <h2>2. Python Test Explorer</h2>
-<p>The built-in test runner works. The Test Explorer makes it visual.</p>
-<p>See a tree of all your tests, run individual tests or suites with one click, see failures inline with diffs. If you write tests (you should), this removes the friction between &quot;write test&quot; and &quot;run test.&quot;</p>
-<p><strong>Setup:</strong> Install &quot;Python Test Explorer&quot; (littlefoxteam.vscode-python-test-adapter). Works with pytest and unittest out of the box.</p>
+<p>The built-in test runner works. The Test Explorer makes it visual and removes friction.</p>
+<p>Without it: you open the terminal, type <code>pytest tests/test_foo.py::test_bar -v</code>, interpret the output, switch back to the editor. With it: you see a tree of all tests, click one, it runs, the failure appears inline with a diff. The friction between &quot;write test&quot; and &quot;run test&quot; is the difference between running tests once a day and running them ten times a day.</p>
+<p><strong>Extension ID:</strong> <code>littlefoxteam.vscode-python-test-adapter</code></p>
+<p><strong>Setup:</strong> Install it. It auto-discovers pytest, unittest, and pytest-bdd test suites. Open the Testing sidebar (icon on the left) and you&#x27;ll see your tests grouped by file.</p>
+<p><strong>Real workflow:</strong></p>
+<ol>
+<li>Write a failing test: <code>def test_bar_returns_baz_when_given_qux():</code></li>
+<li>Click the run button next to the test name in the Testing sidebar</li>
+<li>See the failure with a real diff: <code>assert actual == expected</code> with actual highlighted red</li>
+<li>Fix the code, click the run button again (or set it to auto-run on save)</li>
+<li>Watch it turn green</li>
+</ul>
+<p><strong>Auto-run on save config:</strong></p>
+<pre><code>{
+  &quot;python-testing.pytestEnabled&quot;: true,
+  &quot;python-testing.unittestEnabled&quot;: false,
+  &quot;python-testing.pytestArgs&quot;: [&quot;-v&quot;, &quot;--tb=short&quot;],
+  &quot;python-test-adapter.autoWatch&quot;: true
+}</code></pre>
+<p>The <code>autoWatch</code> setting re-runs tests whenever a test file changes. Combine this with TDD and you&#x27;ll catch regressions before you even switch to the browser.</p>
 <h2>3. Error Lens</h2>
 <p>VS Code shows diagnostics as squiggly underlines with details on hover. Error Lens inlines the error message directly next to the line that has it.</p>
-<p>This sounds trivial. It isn&#x27;t. When you&#x27;re iterating fast, the difference between &quot;see error → hover → read popup → fix&quot; and &quot;see error right next to the code → fix&quot; adds up to real time savings over a day.</p>
-<p>No config needed. Install it, it works.</p>
+<p>This sounds trivial. It isn&#x27;t. The cognitive cost of switching context — read the code, notice the squiggle, hover, wait 200ms for the popup, read the popup, close it, return to the code — sounds small but compounds over hundreds of errors per day. With Error Lens, you see <code>Undefined name &#x27;foo&#x27;</code> inlined at the end of the line the moment you type it. The fix happens in one glance, one motion.</p>
+<p><strong>What it shows per severity level:</strong></p>
+<ul>
+<li>Error: red inline text with the full message</li>
+<li>Warning: yellow inline text</li>
+<li>Info: grey inline text</li>
+<li>Hint: grey inline text (for things like unused imports)</li>
+</ul>
+<p><strong>Real configuration:</strong></p>
+<pre><code>{
+  &quot;errorLens.enabled&quot;: true,
+  &quot;errorLens.addAnnotationText&quot;: false,
+  &quot;errorLens.fontStyle&quot;: &quot;italic&quot;,
+  &quot;errorLens.messageBackgroundMode&quot;: &quot;line&quot;,
+  &quot;errorLens.showUnnecessaryAnnotations&quot;: false
+}</code></pre>
+<p><code>showUnnecessaryAnnotations: false</code> is important — it&#x27;ll hide the <code>unused import</code> annotations that you already have a fixer for (that&#x27;s what Ruff&#x27;s <code>I</code> rules do).</p>
+<p><strong>The one situation where it backfires:</strong> On large legacy codebases with hundreds of warnings, Error Lens can make the screen unreadable. It&#x27;s a signal-to-noise problem — useful when you control the codebase and most warnings are fixable, noisy when you&#x27;re reading someone else&#x27;s mess.</p>
 <h2>4. Even Better TOML</h2>
-<p>If your project uses pyproject.toml (it should in 2026 — setup.py is legacy), you need syntax highlighting and validation for TOML files. This extension provides both, plus auto-completion for known pyproject.toml keys.</p>
-<p>It also catches TOML syntax errors before you waste a <code>pip install</code> cycle wondering why your config isn&#x27;t being picked up.</p>
+<p>If your project uses <code>pyproject.toml</code>, you need this. TOML is not intuitive — the difference between a table and an array of tables, between dotted keys and nested tables, between strings with and without escaping — and VS Code&#x27;s built-in TOML support is bare syntax highlighting at best.</p>
+<p>Even Better TOML gives you:</p>
+<ul>
+<li><strong>Syntax validation</strong>: it catches the <code>foo = &quot;bar&quot;</code> when you meant <code>foo = &quot;bar&quot;</code> inside a table, which will silently fail in ways that waste an hour of debugging a tool that claims it can&#x27;t find your config</li>
+<li><strong>Schema-aware completion</strong>: <code>pyproject.toml</code> has a <a href="https://toml.io/en/schema" target="_blank" rel="noopener">standard schema</a>. It will autocomplete <code>tool.ruff.lint.select</code> and validate that the values are actual Ruff rule codes, not typos</li>
+<li><strong>Hover docs</strong>: hover over <code>line-length</code> in a Ruff config and see the documentation</li>
+</ul>
+<p><strong>Extension ID:</strong> <code>bungcip.better-toml</code></p>
+<p><strong>Real example of what it catches:</strong></p>
+<pre><code>[tool.ruff.lint
+# Missing ] — this is a syntax error, will silently be ignored
+select = [&quot;E&quot;, &quot;F&quot;, &quot;W&quot;]</code></pre>
+<p>VS Code won&#x27;t tell you that&#x27;s broken. Even Better TOML underlines it red on save.</p>
+<p><strong>Setup:</strong> Install it. That&#x27;s it. It activates automatically for any <code>.toml</code> file. No configuration needed.</p>
 <h2>5. Shellcheck</h2>
-<p>Not Python-specific, but if you&#x27;re writing shell scripts for deployment, Docker entrypoints, or CI pipelines (and you are), Shellcheck catches bugs that would silently fail at runtime:</p>
-<ul>
-<li>Unquoted variables that break on paths with spaces</li>
-<li><code>[[ ]]</code> vs <code>[ ]</code> confusion</li>
-<li>Common command argument mistakes</li>
-</ul>
-<p>Install it, enable it, and stop shipping shell scripts with latent bugs.</p>
-<h2>What Not to Install</h2>
-<p>Skip these — they slow down VS Code or add noise:</p>
-<ul>
-<li><strong>GitLens (full install)</strong>: The free tier&#x27;s useful features are now in the paid tier. The remaining free features aren&#x27;t worth the extension load time. Use VS Code&#x27;s built-in Git view instead.</li>
-<li><strong>Auto-import on every extension</strong>: Pick one (Ruff handles this) and disable it in everything else. Multiple import sources fighting each other creates chaos.</li>
-<li><strong>AI completion extensions you&#x27;re not actively using</strong>: Every AI extension you have enabled is parsing your code on every keystroke for context. If you&#x27;re not using it, disable it. Your CPU will thank you.</li>
-</ul>
+<p>Not Python-specific, but if you&#x27;re writing shell scripts for deployment, Docker entrypoints, or CI pipelines — and you are, even if you think you&#x27;re not — Shellcheck catches bugs that would silently fail at runtime.</p>
+<p><strong>Three real bugs it catches:</strong></p>
+<p><strong>Bug 1: unquoted variables</strong></p>
+<pre><code>#!/bin/bash
+file=&quot;My Document.txt&quot;
+rm $file   # breaks on spaces — tries to remove &quot;My&quot; and &quot;Document.txt&quot;
+rm &quot;$file&quot; # correct</code></pre>
+<p>Shellcheck warns: <code>SC2086: Double quote to prevent globbing.</code></p>
+<p><strong>Bug 2: <code>[[ ]]</code> vs <code>[ ]</code></strong></p>
+<pre><code>#!/bin/bash
+if [ -z &quot;$VAR&quot; ]; then   # works for strings, breaks on empty unquoted vars
+    echo &quot;empty&quot;
+fi
+if [[ -z $VAR ]]; then   # correct for this use case
+    echo &quot;empty&quot;
+fi</code></pre>
+<p>Shellcheck warns: <code>SC2236: Don&#x27;t use -n to test if parameter is set. Use [-n &quot;$var&quot;] or [[ -n $var ]].</code></p>
+<p><strong>Bug 3: failing silently in pipes</strong></p>
+<pre><code>#!/bin/bash
+cat huge_log_file.txt | grep &quot;ERROR&quot; | head -5</code></pre>
+<p>If <code>grep</code> finds nothing, this exits 1 silently. Shellcheck warns: <code>SC2181: Check exit code directly with e.g. &#x27;if mycmd;&#x27;, not indirectly with $?.</code></p>
+<p><strong>Setup:</strong> Install the &quot;Shellcheck&quot; extension (publisher: mads-hartmann). It requires Shellcheck to be installed on your system:</p>
+<pre><code># Ubuntu/Debian
+sudo apt install shellcheck
+
+# macOS
+brew install shellcheck
+
+# CachyOS/Arch
+sudo pacman -S shellcheck</code></pre>
+<p>Shellcheck the extension also runs automatically on any <code>.sh</code> file you open.</p>
+<h2>What NOT to Install</h2>
+<p>Skip these. They either cost money for what you need, add noise, or slow VS Code down without benefit.</p>
+<p><strong>GitLens (full install):</strong> The free tier had useful features (blame annotations, history in the gutter). As of 2025, those features moved to paid. The free tier shows you a &quot;GitLens+ trial&quot; popup every time you open a file. Use VS Code&#x27;s built-in Source Control panel instead — it has everything most people actually need.</p>
+<p><strong>Multiple AI completion extensions at once:</strong> If you have Copilot, Continue.dev, and Codeium all running, they&#x27;re all parsing your code on every keystroke. That adds real latency and CPU load. Pick one. If you&#x27;re using Continue.dev with local Ollama for free completions, uninstall Copilot entirely.</p>
+<p><strong>Auto-formatters you don&#x27;t understand:</strong> If Ruff handles formatting (<code>ruff format</code>), don&#x27;t also have Black installed. They will fight. Ruff is 20x faster and produces output that&#x27;s functionally identical.</p>
+<p><strong>Theme packs that include 15 extensions:</strong> You need syntax highlighting and a readable UI. A &quot;100+ themes bundle&quot; doesn&#x27;t make you faster.</p>
 <p>Five extensions, not twenty. Less is faster.</p>
     </div>
 </article>
