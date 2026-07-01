@@ -134,6 +134,8 @@ def load_config(path='config.yaml'):
     with open(path) as f:
         return yaml.safe_load(f)
 
+BASE_PATH = '/lowspelab.github.io'  # GitHub project page subpath
+
 def collect_posts(content_dir='content/posts'):
     posts = []
     for fname in sorted(os.listdir(content_dir)):
@@ -169,7 +171,7 @@ def build_site():
     posts_html = ''
     for p in posts[:12]:
         posts_html += f'''<article class="post-card">
-        <h2><a href="/posts/{p['slug']}/">{p.get('title', 'Untitled')}</a></h2>
+        <h2><a href="{BASE_PATH}/posts/{p['slug']}/">{p.get('title', 'Untitled')}</a></h2>
         <time datetime="{p.get('date', '')}">{p.get('date', '')}</time>
         <p>{p.get('excerpt', '')}</p>
         </article>\n'''
@@ -177,7 +179,8 @@ def build_site():
     index_html = render_template(index_tmpl, posts=posts_html)
     full = render_template(base, site_name=site['name'], site_tagline=site['tagline'],
                            site_description=site['description'], content=index_html,
-                           site_url=site['url'], page_title=site['name'])
+                           site_url=site['url'], page_title=site['name'],
+                           base_path=BASE_PATH)
     
     with open(f'{out_dir}/index.html', 'w') as f:
         f.write(full)
@@ -194,7 +197,8 @@ def build_site():
         full = render_template(base, site_name=site['name'], site_tagline=site['tagline'],
                                site_description=site['description'], content=post_content,
                                site_url=site['url'],
-                               page_title=f"{p.get('title', '')} — {site['name']}")
+                               page_title=f"{p.get('title', '')} — {site['name']}",
+                               base_path=BASE_PATH)
         
         post_dir = f'{out_dir}/posts/{p["slug"]}'
         os.makedirs(post_dir, exist_ok=True)
@@ -202,11 +206,12 @@ def build_site():
             f.write(full)
     
     # ── Sitemap ──
+    site_url = site['url'] + BASE_PATH
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
     sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sitemap += f'  <url><loc>{site["url"]}/</loc><changefreq>weekly</changefreq></url>\n'
+    sitemap += f'  <url><loc>{site_url}/</loc><changefreq>weekly</changefreq></url>\n'
     for p in posts:
-        sitemap += f'  <url><loc>{site["url"]}/posts/{p["slug"]}/</loc></url>\n'
+        sitemap += f'  <url><loc>{site_url}/posts/{p["slug"]}/</loc></url>\n'
     sitemap += '</urlset>'
     with open(f'{out_dir}/sitemap.xml', 'w') as f:
         f.write(sitemap)
@@ -216,14 +221,14 @@ def build_site():
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title>{site['name']}</title>
-<link>{site['url']}</link>
+<link>{site_url}</link>
 <description>{site['description']}</description>
-<atom:link href="{site['url']}/feed.xml" rel="self" type="application/rss+xml"/>
+<atom:link href="{site_url}/feed.xml" rel="self" type="application/rss+xml"/>
 '''
     for p in posts[:20]:
         rss += f'''<item>
 <title>{html.escape(p.get('title', ''))}</title>
-<link>{site['url']}/posts/{p['slug']}/</link>
+<link>{site_url}/posts/{p['slug']}/</link>
 <description>{html.escape(p.get('excerpt', ''))}</description>
 <pubDate>{p.get('date', '')}</pubDate>
 </item>\n'''
