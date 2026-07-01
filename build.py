@@ -25,80 +25,262 @@ def parse_frontmatter(text):
             return meta, body
     return {}, text
 
+def parse_table(lines, start_idx):
+    """Parse a markdown table starting at start_idx. Returns (html, next_idx)."""
+    if start_idx >= len(lines):
+        return '', start_idx
+    
+    # Check if this line looks like a table header (contains | and not just ||)
+    header_line = lines[start_idx].strip()
+    if not ('|' in header_line and not header_line.startswith('||')):
+        return '', start_idx
+    
+    # Need at least header + separator
+    if start_idx + 1 >= len(lines):
+        return '', start_idx
+    
+    separator_line = lines[start_idx + 1].strip()
+    if not re.match(r'^[\|\-\s:]+$', separator_line):
+        return '', start_idx
+    
+    # Parse header
+    header_cells = [c.strip() for c in header_line.split('|') if c.strip() or c == '']
+    # Remove empty first/last if present
+    if header_cells and not header_cells[0]:
+        header_cells = header_cells[1:]
+    if header_cells and not header_cells[-1]:
+        header_cells = header_cells[:-1]
+    
+    # Parse separator to determine alignment
+    sep_cells = [c.strip() for c in separator_line.split('|') if c.strip() or c == '']
+    if sep_cells and not sep_cells[0]:
+        sep_cells = sep_cells[1:]
+    if sep_cells and not sep_cells[-1]:
+        sep_cells = sep_cells[:-1]
+    
+    alignments = []
+    for sep in sep_cells:
+        if sep.startswith(':') and sep.endswith(':'):
+            alignments.append('center')
+        elif sep.endswith(':'):
+            alignments.append('right')
+        else:
+            alignments.append('left')
+    
+    # Pad alignments if needed
+    while len(alignments) < len(header_cells):
+        alignments.append('left')
+    
+    # Parse rows
+    rows = [header_cells]
+    idx = start_idx + 2
+    while idx < len(lines):
+        row_line = lines[idx].strip()
+        if not ('|' in row_line):
+            break
+        if re.match(r'^[\|\-\s:]+$', row_line):  # another separator
+            break
+        row_cells = [c.strip() for c in row_line.split('|') if c.strip() or c == '']
+        if row_cells and not row_cells[0]:
+            row_cells = row_cells[1:]
+        if row_cells and not row_cells[-1]:
+            row_cells = row_cells[:-1]
+        if len(row_cells) == len(header_cells):
+            rows.append(row_cells)
+        idx += 1
+    
+    if len(rows) < 2:
+        return '', start_idx
+    
+    # Build HTML
+    html_out = ['<table>']
+    html_out.append('  <thead>')
+    html_out.append('    <tr>')
+    for i, cell in enumerate(rows[0]):
+        align_attr = f' style="text-align: {alignments[i]};"' if i < len(alignments) else ''
+        html_out.append(f'      <th{align_attr}>{inline_format(cell)}</th>')
+    html_out.append('    </tr>')
+    html_out.append('  </thead>')
+    html_out.append('  <tbody>')
+    for row in rows[1:]:
+        html_out.append('    <tr>')
+        for i, cell in enumerate(row):
+            align_attr = f' style="text-align: {alignments[i]};"' if i < len(alignments) else ''
+            html_out.append(f'      <td{align_attr}>{inline_format(cell)}</td>')
+        html_out.append('    </tr>')
+    html_out.append('  </tbody>')
+    html_out.append('</table>')
+    
+    return '\n'.join(html_out), idx
+
 def md_to_html(md):
-    """Minimal markdown → HTML. Good enough for articles, not a full MD parser."""
+    """Minimal markdown → HTML with table support."""
     lines = md.split('\n')
     out = []
     in_list = False
     in_code = False
     code_buf = []
-
-    for line in lines:
+    list_type = 'ul'  # 'ul' or 'ol'
+    in_blockquote = False
+    blockquote_buf = []
+    
+    idx = 0
+    while idx < len(lines):
+        line = lines[idx]
+        stripped = line.strip()
+        
         # Code blocks
-        if line.strip().startswith('```'):
+        if stripped.startswith('```'):
             if in_code:
                 out.append(f'<pre><code>{html.escape(chr(10).join(code_buf))}</code></pre>')
                 code_buf = []
                 in_code = False
             else:
                 if in_list:
-                    out.append('</ul>')
+                    out.append(f'</{list_type}>')
                     in_list = False
                 in_code = True
+            idx += 1
             continue
         if in_code:
             code_buf.append(line)
+            idx += 1
             continue
-
+        
+        # Tables
+        table_html, next_idx = parse_table(lines, idx)
+        if table_html:
+            if in_list:
+                out.append(f'</{list_type}>')
+                in_list = False
+            if in_blockquote:
+                out.append('</blockquote>')
+                in_blockquote = False
+            out.append(table_html)
+            idx = next_idx
+            continue
+        
         # Headers
         m = re.match(r'^(#{1,6})\s+(.*)', line)
         if m:
             if in_list:
-                out.append('</ul>')
+                out.append(f'</{list_type}>')
                 in_list = False
+            if in_blockquote:
+                out.append('</blockquote>')
+                in_blockquote = False
             lvl = len(m.group(1))
             txt = inline_format(m.group(2))
             out.append(f'<h{lvl}>{txt}</h{lvl}>')
+            idx += 1
             continue
-
+        
         # Horizontal rule
-        if re.match(r'^---+\s*$', line.strip()):
+        if re.match(r'^---+\s*$', stripped):
+            if in_list:
+                out.append(f'</{list_type}>')
+                in_list = False
+            if in_blockquote:
+                out.append('</blockquote>')
+                in_blockquote = False
             out.append('<hr>')
+            idx += 1
             continue
-
-        # Unordered list
-        m = re.match(r'^[\-\*]\s+(.*)', line)
+        
+        # Blockquote
+        m = re.match(r'^>\s+(.*)', line)
         if m:
+            if in_list:
+                out.append(f'</{list_type}>')
+                in_list = False
+            if not in_blockquote:
+                out.append('<blockquote>')
+                in_blockquote = True
+            out.append(f'  <p>{inline_format(m.group(1))}</p>')
+            idx += 1
+            continue
+        elif in_blockquote and not stripped:
+            # Empty line inside blockquote - continue it
+            idx += 1
+            continue
+        elif in_blockquote and not stripped.startswith('>'):
+            out.append('</blockquote>')
+            in_blockquote = False
+            continue
+        
+        # Unordered list
+        m = re.match(r'^[-\*]\s+(.*)', line)
+        if m:
+            if in_blockquote:
+                out.append('</blockquote>')
+                in_blockquote = False
             if not in_list:
                 out.append('<ul>')
                 in_list = True
+                list_type = 'ul'
+            elif list_type != 'ul':
+                out.append('</ol>')
+                out.append('<ul>')
+                list_type = 'ul'
             out.append(f'<li>{inline_format(m.group(1))}</li>')
+            idx += 1
             continue
-
+        
         # Ordered list
         m = re.match(r'^\d+\.\s+(.*)', line)
         if m:
+            if in_blockquote:
+                out.append('</blockquote>')
+                in_blockquote = False
             if not in_list:
                 out.append('<ol>')
                 in_list = True
+                list_type = 'ol'
+            elif list_type != 'ol':
+                out.append('</ul>')
+                out.append('<ol>')
+                list_type = 'ol'
             out.append(f'<li>{inline_format(m.group(1))}</li>')
+            idx += 1
             continue
-
+        
+        # List continuation (indented content under list item)
+        if in_list and (line.startswith('  ') or line.startswith('\t')):
+            # Continuation of previous list item - just add as text
+            if out and out[-1].startswith('<li>'):
+                # Replace closing </li> with continued content
+                prev = out.pop()
+                if prev.endswith('</li>'):
+                    prev = prev[:-5]  # remove </li>
+                out.append(f'{prev}\n{inline_format(stripped)}</li>')
+            idx += 1
+            continue
+        
+        if in_list and not stripped:
+            # Empty line in list - keep list open
+            idx += 1
+            continue
+        
         if in_list:
-            out.append('</ul>')
+            out.append(f'</{list_type}>')
             in_list = False
-
+        
         # Paragraphs
-        stripped = line.strip()
         if not stripped:
+            idx += 1
             continue
+        
         out.append(f'<p>{inline_format(stripped)}</p>')
-
+        idx += 1
+    
+    # Close any open blocks
     if in_code and code_buf:
         out.append(f'<pre><code>{html.escape(chr(10).join(code_buf))}</code></pre>')
     if in_list:
-        out.append('</ul>')
-
+        out.append(f'</{list_type}>')
+    if in_blockquote:
+        out.append('</blockquote>')
+    
     return '\n'.join(out)
 
 def inline_format(text):
@@ -110,8 +292,8 @@ def inline_format(text):
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', text)
     # Bold **text**
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    # Italic *text*
-    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
+    # Italic *text* (but not bold)
+    text = re.sub(r'(?<!\*)\*([^*]+?)\*(?!\*)', r'<em>\1</em>', text)
     # Inline code `text`
     text = re.sub(r'`(.+?)`', r'<code>\1</code>', text)
     return text
@@ -148,7 +330,11 @@ def collect_posts(content_dir='content/posts'):
             meta, body = parse_frontmatter(f.read())
         meta['slug'] = fname.replace('.md', '')
         meta['body_html'] = md_to_html(body)
-        meta['excerpt'] = md_to_html(body[:300]).replace('<p>', '').replace('</p>', '')[:250] + '…'
+        # Excerpt: first paragraph from rendered HTML
+        excerpt_html = md_to_html(body[:500])
+        # Strip tags for excerpt
+        excerpt_text = re.sub(r'<[^>]+>', '', excerpt_html)[:250] + '…'
+        meta['excerpt'] = excerpt_text
         posts.append(meta)
     posts.sort(key=lambda p: p.get('date', ''), reverse=True)
     return posts

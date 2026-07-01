@@ -114,23 +114,108 @@ sudo apt update &amp;&amp; sudo apt install protonup-qt</code></pre>
 <p>Right-click game → Properties → Compatibility → <strong>Force the use of a specific Steam Play compatibility tool</strong> → Pick version.</p>
 <hr>
 <h2>When to Switch Proton Versions: Specific Game Examples</h2>
-<p>| Game | Working Proton | Broken Proton | Why |</p>
-<p>|------|---------------|---------------|-----|</p>
-<p>| <strong>Cyberpunk 2077</strong> | GE-Proton9-26, Proton 9.0-3 | Proton 8.x, 7.x | Needs VKD3D-Proton 2.10+ for RT, DLSS-FG |</p>
-<p>| <strong>Baldur&#x27;s Gate 3</strong> | Proton 9.0-3, GE-Proton9-26 | Proton 8.x (crashes Act 3) | DX11 memory management regression |</p>
-<p>| <strong>Elden Ring</strong> | GE-Proton9-26, Proton 9.0-3 | Proton 8.x (stutter) | <code>winegstreamer</code> fix for cutscenes |</p>
-<p>| <strong>Hogwarts Legacy</strong> | GE-Proton9-26 | Proton 9.0-3 (shader cache leak) | Unreal Engine 4 + Denuvo quirks |</p>
-<p>| <strong>Alan Wake 2</strong> | GE-Proton9-26 | Proton 9.0-3 (mesh shader crash) | Mesh shader VK_EXT not in stock VKD3D |</p>
-<p>| <strong>Starfield</strong> | GE-Proton9-26 | Proton 9.0-3 (creation engine bugs) | Custom DX12 → VK translation needs GE patches |</p>
-<p>| <strong>Destiny 2</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (BattlEye) |</p>
-<p>| <strong>Valorant</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (Vanguard) |</p>
-<p>| <strong>League of Legends</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (Vanguard) |</p>
-<p>| <strong>Apex Legends</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (Easy Anti-Cheat kernel mode) |</p>
-<p>| <strong>Fortnite</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (Easy Anti-Cheat kernel mode) |</p>
-<p>| <strong>Roblox</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (Byfron/Hyperion) |</p>
-<p>| <strong>PUBG</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat |</p>
-<p>| <strong>Rainbow Six Siege</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat (BattlEye) |</p>
-<p>| <strong>The Finals</strong> | <strong>WON&#x27;T WORK</strong> | All | Kernel anti-cheat |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Game</th>
+      <th style="text-align: left;">Working Proton</th>
+      <th style="text-align: left;">Broken Proton</th>
+      <th style="text-align: left;">Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>Cyberpunk 2077</strong></td>
+      <td style="text-align: left;">GE-Proton9-26, Proton 9.0-3</td>
+      <td style="text-align: left;">Proton 8.x, 7.x</td>
+      <td style="text-align: left;">Needs VKD3D-Proton 2.10+ for RT, DLSS-FG</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Baldur&#x27;s Gate 3</strong></td>
+      <td style="text-align: left;">Proton 9.0-3, GE-Proton9-26</td>
+      <td style="text-align: left;">Proton 8.x (crashes Act 3)</td>
+      <td style="text-align: left;">DX11 memory management regression</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Elden Ring</strong></td>
+      <td style="text-align: left;">GE-Proton9-26, Proton 9.0-3</td>
+      <td style="text-align: left;">Proton 8.x (stutter)</td>
+      <td style="text-align: left;"><code>winegstreamer</code> fix for cutscenes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Hogwarts Legacy</strong></td>
+      <td style="text-align: left;">GE-Proton9-26</td>
+      <td style="text-align: left;">Proton 9.0-3 (shader cache leak)</td>
+      <td style="text-align: left;">Unreal Engine 4 + Denuvo quirks</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Alan Wake 2</strong></td>
+      <td style="text-align: left;">GE-Proton9-26</td>
+      <td style="text-align: left;">Proton 9.0-3 (mesh shader crash)</td>
+      <td style="text-align: left;">Mesh shader VK_EXT not in stock VKD3D</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Starfield</strong></td>
+      <td style="text-align: left;">GE-Proton9-26</td>
+      <td style="text-align: left;">Proton 9.0-3 (creation engine bugs)</td>
+      <td style="text-align: left;">Custom DX12 → VK translation needs GE patches</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Destiny 2</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (BattlEye)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Valorant</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (Vanguard)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>League of Legends</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (Vanguard)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Apex Legends</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (Easy Anti-Cheat kernel mode)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Fortnite</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (Easy Anti-Cheat kernel mode)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Roblox</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (Byfron/Hyperion)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>PUBG</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Rainbow Six Siege</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat (BattlEye)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>The Finals</strong></td>
+      <td style="text-align: left;"><strong>WON&#x27;T WORK</strong></td>
+      <td style="text-align: left;">All</td>
+      <td style="text-align: left;">Kernel anti-cheat</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Rule of thumb:</strong> Start with <code>GE-Proton9-Latest</code>. If crashes/stutters → try <code>Proton 9.0-3</code> (stock). If still broken → search ProtonDB for that game + your GPU. Report findings.</p>
 <hr>
 <h2>Must-Have Tools: Exact Install Commands</h2>
@@ -232,43 +317,197 @@ flatpak install flathub com.heroicgameslauncher.hgl</code></pre>
 <hr>
 <h2>What DOES NOT Work: Kernel Anti-Cheat Games List (2026)</h2>
 <p><strong>These will NOT run on Linux. Period. No workaround. Dual-boot or cloud gaming (GeForce Now, Boosteroid).</strong></p>
-<p>| Game | Anti-Cheat | Status |</p>
-<p>|------|------------|--------|</p>
-<p>| Valorant | Vanguard (kernel) | Blocked |</p>
-<p>| League of Legends | Vanguard (kernel) | Blocked |</p>
-<p>| Apex Legends | Easy Anti-Cheat (kernel mode) | Blocked |</p>
-<p>| Fortnite | Easy Anti-Cheat (kernel mode) | Blocked |</p>
-<p>| Destiny 2 | BattlEye (kernel) | Blocked |</p>
-<p>| PUBG | BattlEye (kernel) | Blocked |</p>
-<p>| Rainbow Six Siege | BattlEye (kernel) | Blocked |</p>
-<p>| The Finals | Easy Anti-Cheat (kernel mode) | Blocked |</p>
-<p>| Roblox | Byfron/Hyperion (kernel) | Blocked |</p>
-<p>| Call of Duty: Warzone | Ricochet (kernel) | Blocked |</p>
-<p>| Overwatch 2 | Proprietary kernel driver | Blocked |</p>
-<p>| Counter-Strike 2 | VAC Live (kernel component) | <strong>Works</strong> (VAC != kernel AC) |</p>
-<p>| Dota 2 | VAC | <strong>Works</strong> |</p>
-<p>| Team Fortress 2 | VAC | <strong>Works</strong> |</p>
-<p>| Battlefield 2042 | Easy Anti-Cheat (user-mode only) | <strong>Works</strong> |</p>
-<p>| Halo Infinite | Easy Anti-Cheat (user-mode only) | <strong>Works</strong> |</p>
-<p>| Dead by Daylight | Easy Anti-Cheat (user-mode only) | <strong>Works</strong> |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Game</th>
+      <th style="text-align: left;">Anti-Cheat</th>
+      <th style="text-align: left;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Valorant</td>
+      <td style="text-align: left;">Vanguard (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">League of Legends</td>
+      <td style="text-align: left;">Vanguard (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Apex Legends</td>
+      <td style="text-align: left;">Easy Anti-Cheat (kernel mode)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Fortnite</td>
+      <td style="text-align: left;">Easy Anti-Cheat (kernel mode)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Destiny 2</td>
+      <td style="text-align: left;">BattlEye (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">PUBG</td>
+      <td style="text-align: left;">BattlEye (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Rainbow Six Siege</td>
+      <td style="text-align: left;">BattlEye (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">The Finals</td>
+      <td style="text-align: left;">Easy Anti-Cheat (kernel mode)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Roblox</td>
+      <td style="text-align: left;">Byfron/Hyperion (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Call of Duty: Warzone</td>
+      <td style="text-align: left;">Ricochet (kernel)</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Overwatch 2</td>
+      <td style="text-align: left;">Proprietary kernel driver</td>
+      <td style="text-align: left;">Blocked</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Counter-Strike 2</td>
+      <td style="text-align: left;">VAC Live (kernel component)</td>
+      <td style="text-align: left;"><strong>Works</strong> (VAC != kernel AC)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Dota 2</td>
+      <td style="text-align: left;">VAC</td>
+      <td style="text-align: left;"><strong>Works</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Team Fortress 2</td>
+      <td style="text-align: left;">VAC</td>
+      <td style="text-align: left;"><strong>Works</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Battlefield 2042</td>
+      <td style="text-align: left;">Easy Anti-Cheat (user-mode only)</td>
+      <td style="text-align: left;"><strong>Works</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Halo Infinite</td>
+      <td style="text-align: left;">Easy Anti-Cheat (user-mode only)</td>
+      <td style="text-align: left;"><strong>Works</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Dead by Daylight</td>
+      <td style="text-align: left;">Easy Anti-Cheat (user-mode only)</td>
+      <td style="text-align: left;"><strong>Works</strong></td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Easy Anti-Cheat / BattlEye user-mode = works.</strong> Kernel mode = hard no. Epic Games Store shows &quot;Easy Anti-Cheat&quot; badge — click it, if it says &quot;kernel mode&quot; or &quot;driver required&quot;, it&#x27;s dead on Linux.</p>
 <p><strong>Check before buying:</strong> <code>https://www.protondb.com</code> + search game → look for &quot;Platinum/Gold&quot; with &quot;Native&quot; or &quot;Proton&quot; — if only &quot;Bronze/Borked&quot; and comments mention anti-cheat, skip.</p>
 <hr>
 <h2>Performance Comparison: Vulkan vs DXVK vs DX12 (Real Numbers)</h2>
 <p><strong>Test system:</strong> Ryzen 5 5600, RX 6600 8GB, 32GB DDR4-3600, CachyOS <code>linux-cachyos</code> kernel, Mesa 24.2, Proton-GE 9-26.</p>
-<p>| Game / API | Native Vulkan | DXVK (DX11→VK) | VKD3D-Proton (DX12→VK) | Windows 11 (Baseline) |</p>
-<p>|------------|---------------|----------------|------------------------|----------------------|</p>
-<p>| <strong>Doom Eternal</strong> (VK native) | <strong>198 avg</strong> | — | — | 205 avg |</p>
-<p>| <strong>Red Dead Redemption 2</strong> (VK native) | <strong>112 avg</strong> | — | — | 118 avg |</p>
-<p>| <strong>Cyberpunk 2077</strong> (DX12) | — | — | <strong>89 avg</strong> (RT off) | 102 avg |</p>
-<p>| <strong>Cyberpunk 2077</strong> (DX12 + RT Ultra) | — | — | <strong>52 avg</strong> | 68 avg |</p>
-<p>| <strong>Baldur&#x27;s Gate 3</strong> (DX11) | — | <strong>145 avg</strong> | — | 158 avg |</p>
-<p>| <strong>Elden Ring</strong> (DX12) | — | — | <strong>132 avg</strong> | 148 avg |</p>
-<p>| <strong>Hogwarts Legacy</strong> (DX12) | — | — | <strong>78 avg</strong> | 95 avg |</p>
-<p>| <strong>Starfield</strong> (DX12) | — | — | <strong>68 avg</strong> | 85 avg |</p>
-<p>| <strong>The Witcher 3 Next-Gen</strong> (DX12) | — | — | <strong>95 avg</strong> | 110 avg |</p>
-<p>| <strong>God of War</strong> (DX12) | — | — | <strong>118 avg</strong> | 132 avg |</p>
-<p>| <strong>Horizon Zero Dawn</strong> (DX12) | — | — | <strong>105 avg</strong> | 118 avg |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Game / API</th>
+      <th style="text-align: left;">Native Vulkan</th>
+      <th style="text-align: left;">DXVK (DX11→VK)</th>
+      <th style="text-align: left;">VKD3D-Proton (DX12→VK)</th>
+      <th style="text-align: left;">Windows 11 (Baseline)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>Doom Eternal</strong> (VK native)</td>
+      <td style="text-align: left;"><strong>198 avg</strong></td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">205 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Red Dead Redemption 2</strong> (VK native)</td>
+      <td style="text-align: left;"><strong>112 avg</strong></td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">118 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Cyberpunk 2077</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>89 avg</strong> (RT off)</td>
+      <td style="text-align: left;">102 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Cyberpunk 2077</strong> (DX12 + RT Ultra)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>52 avg</strong></td>
+      <td style="text-align: left;">68 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Baldur&#x27;s Gate 3</strong> (DX11)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>145 avg</strong></td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">158 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Elden Ring</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>132 avg</strong></td>
+      <td style="text-align: left;">148 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Hogwarts Legacy</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>78 avg</strong></td>
+      <td style="text-align: left;">95 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Starfield</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>68 avg</strong></td>
+      <td style="text-align: left;">85 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>The Witcher 3 Next-Gen</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>95 avg</strong></td>
+      <td style="text-align: left;">110 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>God of War</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>118 avg</strong></td>
+      <td style="text-align: left;">132 avg</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Horizon Zero Dawn</strong> (DX12)</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;">—</td>
+      <td style="text-align: left;"><strong>105 avg</strong></td>
+      <td style="text-align: left;">118 avg</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Key takeaways:</strong></p>
 <ul>
 <li><strong>Native Vulkan = 95-99% of Windows.</strong> Sometimes beats Windows (Doom Eternal, RDR2) due to lower driver overhead.</li>
@@ -285,62 +524,109 @@ DXVK_ASYNC=1 VKD3D_CONFIG=force_host_cached_resources,multi_queue %command%
 __GL_SHADER_DISK_CACHE=1 __GL_SHADER_DISK_CACHE_PATH=~/.cache/nvidia %command%</code></pre>
 <hr>
 <h2>Launch Options Reference Table</h2>
-<p>| Scenario | Launch Options | Notes |</p>
-<p>|----------|---------------|-------|</p>
-<p>| <strong>Default (most games)</strong> | <code>gamemoderun %command%</code> | Enables GameMode (CPU governor, I/O priority) |</p>
-<p>| <strong>MangoHud overlay</strong> | <code>mangohud gamemoderun %command%</code> | Add <code>MANGOHUD_CONFIGFILE=~/.config/MangoHud/custom.conf</code> for per-game config |</p>
-<p>| <strong>Gamescope + HDR</strong> | <code>gamescope -W 2560 -H 1440 -r 144 --hdr-enabled --hdr-itm-enable --force-grab-cursor -- %command%</code> | Adjust resolution/refresh |</p>
-<p>| <strong>Gamescope + FSR upscale</strong> | <code>gamescope -W 3840 -H 2160 -w 2560 -h 1440 -r 144 --fsr-sharpness 20 -- %command%</code> | Internal 1440p → output 4K |</p>
-<p>| <strong>DXVK async (reduce stutter)</strong> | <code>DXVK_ASYNC=1 %command%</code> | Can cause artifacts in some games (Cyberpunk menus) |</p>
-<p>| <strong>VKD3D multi-queue + host cached</strong> | <code>VKD3D_CONFIG=force_host_cached_resources,multi_queue %command%</code> | Best for DX12 games |</p>
-<p>| <strong>Force Proton version</strong> | <code>PROTON_VERSION=GE-Proton9-26 %command%</code> | Override Steam setting per-game |</p>
-<p>| <strong>Disable Steam Input</strong> | <code>SteamInput=0 %command%</code> | Fixes double-input in some Unity games |</p>
-<p>| <strong>Force Vulkan renderer</strong> | <code>VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json %command%</code> | AMD only; forces RADV over AMDVLK |</p>
-<p>| <strong>Nvidia prime offload (laptop)</strong> | <code>__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia %command%</code> | For hybrid GPU laptops |</p>
-<p>| <strong>Disable compositing (X11)</strong> | <code>vblank_mode=0 %command%</code> | Reduces latency on X11; Wayland handles this |</p>
-<p>| <strong>Large address aware (32-bit games)</strong> | <code>WINEDLLOVERRIDES=&quot;kernel32.dll=n,b&quot; %command%</code> | Fixes 2GB memory limit in old games |</p>
-<p>| <strong>ESYNC + FSYNC (kernel 5.16+)</strong> | <code>WINEESYNC=1 WINEFSYNC=1 %command%</code> | Default in Proton-GE; don&#x27;t set manually unless debugging |</p>
-<p>| <strong>Disable DXVK HUD</strong> | <code>DXVK_HUD=0 %command%</code> | If you see FPS overlay you didn&#x27;t ask for |</p>
-<p>| <strong>Force specific GPU (multi-GPU)</strong> | <code>DRI_PRIME=1 %command%</code> | AMD integrated → discrete; Nvidia use <code>__NV_PRIME_RENDER_OFFLOAD=1</code> |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Scenario</th>
+      <th style="text-align: left;">Launch Options</th>
+      <th style="text-align: left;">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>Default (most games)</strong></td>
+      <td style="text-align: left;"><code>gamemoderun %command%</code></td>
+      <td style="text-align: left;">Enables GameMode (CPU governor, I/O priority)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>MangoHud overlay</strong></td>
+      <td style="text-align: left;"><code>mangohud gamemoderun %command%</code></td>
+      <td style="text-align: left;">Add <code>MANGOHUD_CONFIGFILE=~/.config/MangoHud/custom.conf</code> for per-game config</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Gamescope + HDR</strong></td>
+      <td style="text-align: left;"><code>gamescope -W 2560 -H 1440 -r 144 --hdr-enabled --hdr-itm-enable --force-grab-cursor -- %command%</code></td>
+      <td style="text-align: left;">Adjust resolution/refresh</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Gamescope + FSR upscale</strong></td>
+      <td style="text-align: left;"><code>gamescope -W 3840 -H 2160 -w 2560 -h 1440 -r 144 --fsr-sharpness 20 -- %command%</code></td>
+      <td style="text-align: left;">Internal 1440p → output 4K</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>DXVK async (reduce stutter)</strong></td>
+      <td style="text-align: left;"><code>DXVK_ASYNC=1 %command%</code></td>
+      <td style="text-align: left;">Can cause artifacts in some games (Cyberpunk menus)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>VKD3D multi-queue + host cached</strong></td>
+      <td style="text-align: left;"><code>VKD3D_CONFIG=force_host_cached_resources,multi_queue %command%</code></td>
+      <td style="text-align: left;">Best for DX12 games</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Force Proton version</strong></td>
+      <td style="text-align: left;"><code>PROTON_VERSION=GE-Proton9-26 %command%</code></td>
+      <td style="text-align: left;">Override Steam setting per-game</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Disable Steam Input</strong></td>
+      <td style="text-align: left;"><code>SteamInput=0 %command%</code></td>
+      <td style="text-align: left;">Fixes double-input in some Unity games</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Force Vulkan renderer</strong></td>
+      <td style="text-align: left;"><code>VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json %command%</code></td>
+      <td style="text-align: left;">AMD only; forces RADV over AMDVLK</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Nvidia prime offload (laptop)</strong></td>
+      <td style="text-align: left;"><code>__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia %command%</code></td>
+      <td style="text-align: left;">For hybrid GPU laptops</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Disable compositing (X11)</strong></td>
+      <td style="text-align: left;"><code>vblank_mode=0 %command%</code></td>
+      <td style="text-align: left;">Reduces latency on X11; Wayland handles this</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Large address aware (32-bit games)</strong></td>
+      <td style="text-align: left;"><code>WINEDLLOVERRIDES=&quot;kernel32.dll=n,b&quot; %command%</code></td>
+      <td style="text-align: left;">Fixes 2GB memory limit in old games</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>ESYNC + FSYNC (kernel 5.16+)</strong></td>
+      <td style="text-align: left;"><code>WINEESYNC=1 WINEFSYNC=1 %command%</code></td>
+      <td style="text-align: left;">Default in Proton-GE; don&#x27;t set manually unless debugging</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Disable DXVK HUD</strong></td>
+      <td style="text-align: left;"><code>DXVK_HUD=0 %command%</code></td>
+      <td style="text-align: left;">If you see FPS overlay you didn&#x27;t ask for</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Force specific GPU (multi-GPU)</strong></td>
+      <td style="text-align: left;"><code>DRI_PRIME=1 %command%</code></td>
+      <td style="text-align: left;">AMD integrated → discrete; Nvidia use <code>__NV_PRIME_RENDER_OFFLOAD=1</code></td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Pro tip:</strong> Create a text file <code>~/launch-options.txt</code> with your common combos. Copy-paste into Steam per game.</p>
 <hr>
 <h2>Where Linux Is Still Worse Than Windows (Honest List)</h2>
 <ol>
 <li><strong>Kernel anti-cheat</strong> — You simply cannot play the biggest competitive games. No amount of tweaking fixes this. Dual-boot or cloud gaming required.</li>
-</ul>
-<ol>
 <li><strong>HDR</strong> — Gamescope is the only reliable path. Desktop HDR (KWin, Cosmic) works for video, not games. Calibration per game. Windows: enable HDR in settings, done.</li>
-</ul>
-<ol>
 <li><strong>Multi-monitor VRR</strong> — Works on single monitor. Two monitors with different refresh rates? Stutter city. Windows handles this natively since 2021.</li>
-</ul>
-<ol>
 <li><strong>Nvidia driver updates</strong> — <code>pacman -Syu</code> pulls new kernel → Nvidia module rebuild → 5-15 min black screen on boot. <code>akmods</code>/<code>dkms</code> helps but not instant. Windows: GeForce Experience updates in background.</li>
-</ul>
-<ol>
 <li><strong>Ray tracing performance</strong> — 20-30% behind Windows on same hardware. VKD3D-Proton RT translation isn&#x27;t there yet. Path tracing (Cyberpunk PT mode) is slideshow on mid-range.</li>
-</ul>
-<ol>
 <li><strong>DLSS Frame Generation</strong> — Works via VKD3D-Proton but adds 1 frame latency vs Windows. Native DLSS-FG on Windows is smoother.</li>
-</ul>
-<ol>
 <li><strong>Audio stack complexity</strong> — PipeWire + WirePlumber + PulseAudio compat + Jack = occasional &quot;why is my mic not working in Discord but works in OBS&quot; debugging. Windows: right-click speaker icon.</li>
-</ul>
-<ol>
 <li><strong>Game launchers</strong> — Epic/GOG/EA/Ubisoft/Battle.net all need separate Wine prefixes. Heroic + Lutris + Bottles covers 90% but it&#x27;s <em>more moving parts</em> than &quot;click installer, play&quot;.</li>
-</ul>
-<ol>
 <li><strong>Modding</strong> — Vortex works via Wine. Mod Organizer 2 works. But SKSE (Skyrim), F4SE (Fallout 4) require specific Wine/Proton versions. Steam Workshop auto-download works; manual mod install = more steps.</li>
-</ul>
-<ol>
 <li><strong>VR</strong> — OpenXR + Monado + ALVR for standalone, SteamVR for PCVR. Works but setup is 10x Windows. Quest Link via ALVR = compression artifacts. Native Windows SteamVR = plug and play.</li>
-</ul>
-<ol>
 <li><strong>Cheat tables / trainers</strong> — Cheat Engine runs in Wine but attaching to Windows process in Proton prefix is flaky. Windows: attach, done.</li>
-</ul>
-<ol>
 <li><strong>Old games (pre-2010)</strong> — Often run <em>better</em> on Linux via Wine than Windows 11 (16-bit support, no driver signing). But installers with SecuROM/SafeDisc/StarForce = broken. GOG versions work.</li>
-</ul>
+</ol>
 <hr>
 <h2>My Daily Driver Setup (Copy-Paste Ready)</h2>
 <p><strong>CachyOS + KDE Plasma 6 + Wayland</strong></p>

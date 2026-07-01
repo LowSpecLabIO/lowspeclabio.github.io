@@ -35,14 +35,47 @@
     <div class="post-body">
 <p>I&#x27;ve spent the last six months testing every free AI coding tool that claims to be worth your time. Most aren&#x27;t. This is the honest breakdown of what actually works in 2026 — real limits, real strengths, real weaknesses, and the exact commands you need to run local models.</p>
 <h2>Quick Decision Matrix</h2>
-<p>| Scenario | Best Choice | Runner Up |</p>
-<p>|----------|-------------|-----------|</p>
-<p>| No GPU, completely free | <strong>Windsurf</strong> (unlimited completions) | Continue.dev + Ollama |</p>
-<p>| Has GPU (8GB+ VRAM), wants local | <strong>Continue.dev</strong> + Qwen 2.5 Coder 7B | Zed with Ollama |</p>
-<p>| Has GPU (16GB+ VRAM), wants best local | <strong>Continue.dev</strong> + DeepSeek Coder V2 | Continue.dev + Qwen 2.5 Coder 14B |</p>
-<p>| Willing to pay $20/mo | <strong>Cursor Pro</strong> | Windsurf Pro |</p>
-<p>| Team collaboration needed | <strong>Zed</strong> | Cursor (with sharing) |</p>
-<p>| VS Code diehard | <strong>Continue.dev</strong> | GitHub Copilot Free (limited) |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Scenario</th>
+      <th style="text-align: left;">Best Choice</th>
+      <th style="text-align: left;">Runner Up</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">No GPU, completely free</td>
+      <td style="text-align: left;"><strong>Windsurf</strong> (unlimited completions)</td>
+      <td style="text-align: left;">Continue.dev + Ollama</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Has GPU (8GB+ VRAM), wants local</td>
+      <td style="text-align: left;"><strong>Continue.dev</strong> + Qwen 2.5 Coder 7B</td>
+      <td style="text-align: left;">Zed with Ollama</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Has GPU (16GB+ VRAM), wants best local</td>
+      <td style="text-align: left;"><strong>Continue.dev</strong> + DeepSeek Coder V2</td>
+      <td style="text-align: left;">Continue.dev + Qwen 2.5 Coder 14B</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Willing to pay $20/mo</td>
+      <td style="text-align: left;"><strong>Cursor Pro</strong></td>
+      <td style="text-align: left;">Windsurf Pro</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Team collaboration needed</td>
+      <td style="text-align: left;"><strong>Zed</strong></td>
+      <td style="text-align: left;">Cursor (with sharing)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">VS Code diehard</td>
+      <td style="text-align: left;"><strong>Continue.dev</strong></td>
+      <td style="text-align: left;">GitHub Copilot Free (limited)</td>
+    </tr>
+  </tbody>
+</table>
 <hr>
 <h2>Continue.dev — The Open Source Option That Actually Works</h2>
 <p><strong>Free tier:</strong> Completely free, open source (Apache 2.0). No usage limits. No account required.</p>
@@ -116,13 +149,48 @@ ollama pull deepseek-coder-v2:16b
 }</code></pre>
 <p>Restart VS Code / Cursor / Windsurf after saving. Test with <code>@codebase explain the auth flow</code> in Continue chat.</p>
 <h3>VRAM Requirements Quick Reference</h3>
-<p>| Model | 4-bit Quant VRAM | 8-bit Quant VRAM | Recommended GPU |</p>
-<p>|-------|------------------|------------------|-----------------|</p>
-<p>| Qwen 2.5 Coder 1.5B | 1.1 GB | 2.2 GB | Any GTX 1060 3GB+ |</p>
-<p>| Qwen 2.5 Coder 7B | 5.2 GB | 10.4 GB | RTX 3060 12GB / 4060 8GB |</p>
-<p>| Qwen 2.5 Coder 14B | 9.8 GB | 19.6 GB | RTX 3090 24GB / 4090 24GB |</p>
-<p>| DeepSeek Coder V2 16B | 10 GB | 20 GB | RTX 3090 24GB / 4090 24GB |</p>
-<p>| DeepSeek Coder V2 236B | ~140 GB | ~280 GB | Multi-GPU / H100 only |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Model</th>
+      <th style="text-align: left;">4-bit Quant VRAM</th>
+      <th style="text-align: left;">8-bit Quant VRAM</th>
+      <th style="text-align: left;">Recommended GPU</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Qwen 2.5 Coder 1.5B</td>
+      <td style="text-align: left;">1.1 GB</td>
+      <td style="text-align: left;">2.2 GB</td>
+      <td style="text-align: left;">Any GTX 1060 3GB+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Qwen 2.5 Coder 7B</td>
+      <td style="text-align: left;">5.2 GB</td>
+      <td style="text-align: left;">10.4 GB</td>
+      <td style="text-align: left;">RTX 3060 12GB / 4060 8GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Qwen 2.5 Coder 14B</td>
+      <td style="text-align: left;">9.8 GB</td>
+      <td style="text-align: left;">19.6 GB</td>
+      <td style="text-align: left;">RTX 3090 24GB / 4090 24GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">DeepSeek Coder V2 16B</td>
+      <td style="text-align: left;">10 GB</td>
+      <td style="text-align: left;">20 GB</td>
+      <td style="text-align: left;">RTX 3090 24GB / 4090 24GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">DeepSeek Coder V2 236B</td>
+      <td style="text-align: left;">~140 GB</td>
+      <td style="text-align: left;">~280 GB</td>
+      <td style="text-align: left;">Multi-GPU / H100 only</td>
+    </tr>
+  </tbody>
+</table>
 <hr>
 <h2>Cursor — The Polished Option With Hard Limits</h2>
 <p><strong>Free tier limits (2026):</strong></p>
@@ -182,7 +250,7 @@ ollama pull deepseek-coder-v2:16b
 <ol>
 <li>Open Zed settings: <code>Cmd+,</code> (macOS) / <code>Ctrl+,</code> (Linux)</li>
 <li>Add to <code>settings.json</code>:</li>
-</ul>
+</ol>
 <pre><code>{
   &quot;assistant&quot;: {
     &quot;default_model&quot;: {
@@ -194,7 +262,7 @@ ollama pull deepseek-coder-v2:16b
 }</code></pre>
 <ol>
 <li>Restart Zed. Use <code>Ctrl+Enter</code> in editor for inline assist, <code>Cmd+Shift+A</code> for chat panel.</li>
-</ul>
+</ol>
 <p>Zed&#x27;s Ollama support is basic — no tab autocomplete from local models yet (tracked in <a href="https://github.com/zed-industries/zed/issues/12345" target="_blank" rel="noopener">zed-industries/zed#12345</a>). For now, it&#x27;s chat + inline only.</p>
 <hr>
 <h2>Windsurf — The Unlimited Free Completions Option</h2>
@@ -310,13 +378,36 @@ ollama pull qwen2.5-coder:14b  # 16GB+ unified only</code></pre>
 </ul>
 <p>Disable all other AI autocomplete extensions. Keep one chat interface if you want (Continue.dev for local, or Zed&#x27;s chat).</p>
 <h3>Other Waste-of-Time Installs</h3>
-<p>| Extension | Why Skip |</p>
-<p>|-----------|----------|</p>
-<p>| Tabnine Free | 2M tokens/month limit, worse than Windsurf unlimited |</p>
-<p>| Codeium | Windsurf IS Codeium&#x27;s editor fork; same models, same limits |</p>
-<p>| Supermaven Free | 2K completions/day, no chat, no multi-file |</p>
-<p>| Blackbox AI | Aggressive telemetry, mediocre models |</p>
-<p>| Cody Free | 50 chats/month, 200 completions/day — too restrictive |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Extension</th>
+      <th style="text-align: left;">Why Skip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Tabnine Free</td>
+      <td style="text-align: left;">2M tokens/month limit, worse than Windsurf unlimited</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Codeium</td>
+      <td style="text-align: left;">Windsurf IS Codeium&#x27;s editor fork; same models, same limits</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Supermaven Free</td>
+      <td style="text-align: left;">2K completions/day, no chat, no multi-file</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Blackbox AI</td>
+      <td style="text-align: left;">Aggressive telemetry, mediocre models</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Cody Free</td>
+      <td style="text-align: left;">50 chats/month, 200 completions/day — too restrictive</td>
+    </tr>
+  </tbody>
+</table>
 <hr>
 <h2>My Actual Daily Driver Setup (July 2026)</h2>
 <p><strong>Primary: Zed + Ollama (Qwen 2.5 Coder 7B)</strong></p>
@@ -339,15 +430,44 @@ ollama pull qwen2.5-coder:14b  # 16GB+ unified only</code></pre>
 <p><strong>Not installed:</strong> Cursor (hit free limits weekly), GitHub Copilot (paid), GitLens (stripped), any other AI autocomplete.</p>
 <hr>
 <h2>Final Recommendations</h2>
-<p>| Your Situation | Start Here |</p>
-<p>|----------------|------------|</p>
-<p>| <strong>GPU (8GB+ VRAM), privacy matters</strong> | Continue.dev + Ollama (Qwen 2.5 Coder 7B) |</p>
-<p>| <strong>GPU (16GB+ VRAM), best local quality</strong> | Continue.dev + Ollama (DeepSeek Coder V2 16B) |</p>
-<p>| <strong>No GPU, code daily, free only</strong> | Windsurf (unlimited completions) |</p>
-<p>| <strong>No GPU, occasional coding</strong> | Zed + Ollama (Qwen 1.5B) or Windsurf |</p>
-<p>| <strong>Team pair programming</strong> | Zed (native collab) |</p>
-<p>| <strong>Complex multi-file refactors, will pay</strong> | Cursor Pro ($20/mo) |</p>
-<p>| <strong>Enterprise, compliance, SSO</strong> | GitHub Copilot Business / Cursor Business |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Your Situation</th>
+      <th style="text-align: left;">Start Here</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>GPU (8GB+ VRAM), privacy matters</strong></td>
+      <td style="text-align: left;">Continue.dev + Ollama (Qwen 2.5 Coder 7B)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>GPU (16GB+ VRAM), best local quality</strong></td>
+      <td style="text-align: left;">Continue.dev + Ollama (DeepSeek Coder V2 16B)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>No GPU, code daily, free only</strong></td>
+      <td style="text-align: left;">Windsurf (unlimited completions)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>No GPU, occasional coding</strong></td>
+      <td style="text-align: left;">Zed + Ollama (Qwen 1.5B) or Windsurf</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Team pair programming</strong></td>
+      <td style="text-align: left;">Zed (native collab)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Complex multi-file refactors, will pay</strong></td>
+      <td style="text-align: left;">Cursor Pro ($20/mo)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Enterprise, compliance, SSO</strong></td>
+      <td style="text-align: left;">GitHub Copilot Business / Cursor Business</td>
+    </tr>
+  </tbody>
+</table>
 <p>The landscape shifts fast. Cursor&#x27;s free tier shrank 3x in 2025. Windsurf launched mid-2025. Zed added AI late 2025. By 2027 this article will be outdated. But the principles hold: <strong>match the tool to your hardware and workflow, run local when you can, avoid extension conflicts, and don&#x27;t pay until the free tier genuinely blocks you.</strong></p>
 <hr>
 <p><em>Commands tested on Ubuntu 24.04 / macOS 15.4 with Ollama 0.5.x and Continue.dev 1.2.x. VRAM measurements via <code>nvidia-smi</code> during active inference. Your mileage will vary by quantization, context length, and background apps.</em></p>

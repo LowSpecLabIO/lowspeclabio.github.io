@@ -37,11 +37,44 @@
 <p>Here&#x27;s exactly how to get there.</p>
 <h2>CPU Bottleneck Identification: What Your 10-Year-Old CPU Actually Does</h2>
 <h3>The Three Contenders</h3>
-<p>| CPU | Cores/Threads | Base/Boost | PassMark ST | PassMark MT | Real-World Gaming Tier |</p>
-<p>|-----|---------------|------------|-------------|-------------|------------------------|</p>
-<p>| i5-6400 | 4/4 | 2.7/3.3 GHz | 1,784 | 5,542 | Entry 1080p low |</p>
-<p>| i5-6500 | 4/4 | 3.2/3.6 GHz | 1,958 | 6,012 | Solid 1080p low/med |</p>
-<p>| FX-8350 | 8/8 | 4.0/4.2 GHz | 1,289 | 6,267 | Struggles with DX12/Vulkan |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">CPU</th>
+      <th style="text-align: left;">Cores/Threads</th>
+      <th style="text-align: left;">Base/Boost</th>
+      <th style="text-align: left;">PassMark ST</th>
+      <th style="text-align: left;">PassMark MT</th>
+      <th style="text-align: left;">Real-World Gaming Tier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">i5-6400</td>
+      <td style="text-align: left;">4/4</td>
+      <td style="text-align: left;">2.7/3.3 GHz</td>
+      <td style="text-align: left;">1,784</td>
+      <td style="text-align: left;">5,542</td>
+      <td style="text-align: left;">Entry 1080p low</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">i5-6500</td>
+      <td style="text-align: left;">4/4</td>
+      <td style="text-align: left;">3.2/3.6 GHz</td>
+      <td style="text-align: left;">1,958</td>
+      <td style="text-align: left;">6,012</td>
+      <td style="text-align: left;">Solid 1080p low/med</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">FX-8350</td>
+      <td style="text-align: left;">8/8</td>
+      <td style="text-align: left;">4.0/4.2 GHz</td>
+      <td style="text-align: left;">1,289</td>
+      <td style="text-align: left;">6,267</td>
+      <td style="text-align: left;">Struggles with DX12/Vulkan</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>PassMark single-thread is the only number that matters for gaming.</strong> The FX-8350 looks competitive in multi-thread, but its single-thread performance is 35% behind the i5-6500. Modern engines (Unreal 5, Unity 2022+, id Tech 7) hit one core hard. The FX chokes.</p>
 <h3>How to Diagnose Your Bottleneck Right Now</h3>
 <pre><code># Install monitoring tools
@@ -74,24 +107,91 @@ nvtop  # or radeontop for AMD</code></pre>
 <ol>
 <li><strong>Overclock to 4.5-4.7 GHz</strong> on a 990FX board with VRM cooling. Gains ~15% single-thread.</li>
 <li><strong>Accept 30 FPS lows</strong> in modern titles. It&#x27;ll run them, but 1% lows will stutter.</li>
-</ul>
+</ol>
 <p>The FX&#x27;s module architecture (shared FPU per two integer cores) murders performance in AVX-heavy workloads. Modern games use AVX2. You cannot fix this in software.</p>
 <p><strong>Recommendation:</strong> If you have an FX-8350, budget $60-80 for a used i5-6500 + B150/H110 board + DDR4. The jump is night and day.</p>
 <h2>SSD Upgrade Impact: Real Load-Time Numbers</h2>
 <p>I tested three drives on the same i5-6500 system, same Windows 10 install, same games:</p>
-<p>| Drive | Type | Seq Read | 4K Q1 Read | Cyberpunk Load (menu→game) | BG3 Load (save→play) | Elden Ring Load (site of grace→world) |</p>
-<p>|-------|------|----------|------------|---------------------------|---------------------|--------------------------------------|</p>
-<p>| WD Blue 1TB | SATA SSD | 560 MB/s | 38 MB/s | 42s | 18s | 12s |</p>
-<p>| Kingston NV2 1TB | NVMe Gen3 x4 | 3,500 MB/s | 48 MB/s | 28s | 11s | 7s |</p>
-<p>| Samsung 970 EVO Plus 1TB | NVMe Gen3 x4 | 3,500 MB/s | 52 MB/s | 26s | 10s | 6s |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Drive</th>
+      <th style="text-align: left;">Type</th>
+      <th style="text-align: left;">Seq Read</th>
+      <th style="text-align: left;">4K Q1 Read</th>
+      <th style="text-align: left;">Cyberpunk Load (menu→game)</th>
+      <th style="text-align: left;">BG3 Load (save→play)</th>
+      <th style="text-align: left;">Elden Ring Load (site of grace→world)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">WD Blue 1TB</td>
+      <td style="text-align: left;">SATA SSD</td>
+      <td style="text-align: left;">560 MB/s</td>
+      <td style="text-align: left;">38 MB/s</td>
+      <td style="text-align: left;">42s</td>
+      <td style="text-align: left;">18s</td>
+      <td style="text-align: left;">12s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Kingston NV2 1TB</td>
+      <td style="text-align: left;">NVMe Gen3 x4</td>
+      <td style="text-align: left;">3,500 MB/s</td>
+      <td style="text-align: left;">48 MB/s</td>
+      <td style="text-align: left;">28s</td>
+      <td style="text-align: left;">11s</td>
+      <td style="text-align: left;">7s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Samsung 970 EVO Plus 1TB</td>
+      <td style="text-align: left;">NVMe Gen3 x4</td>
+      <td style="text-align: left;">3,500 MB/s</td>
+      <td style="text-align: left;">52 MB/s</td>
+      <td style="text-align: left;">26s</td>
+      <td style="text-align: left;">10s</td>
+      <td style="text-align: left;">6s</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Key finding:</strong> SATA SSD → NVMe saves 12-16 seconds per load. NVMe Gen3 vs Gen4 (on a platform that supports it) saves another 2-3 seconds. <strong>Diminishing returns hit hard after SATA SSD.</strong></p>
 <h3>What to Buy in 2026</h3>
-<p>| Budget | Drive | Price (used/new) | Notes |</p>
-<p>|--------|-------|------------------|-------|</p>
-<p>| $15-20 | 500GB SATA SSD (Kingston A400, Crucial BX500) | New | Minimum viable. 500GB holds OS + 3-4 big games. |</p>
-<p>| $35-45 | 1TB NVMe Gen3 (Kingston NV2, WD Blue SN570) | New | Sweet spot. DRAM-less but fine for gaming. |</p>
-<p>| $50-65 | 1TB NVMe Gen3 with DRAM (Samsung 970 EVO Plus, SK hynix P31) | Used/New | Best 4K random. P31 is efficiency king for laptops. |</p>
-<p>| $25-35 | 500GB NVMe Gen3 | Used | eBay pulls from laptop upgrades. Check SMART data. |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Budget</th>
+      <th style="text-align: left;">Drive</th>
+      <th style="text-align: left;">Price (used/new)</th>
+      <th style="text-align: left;">Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">$15-20</td>
+      <td style="text-align: left;">500GB SATA SSD (Kingston A400, Crucial BX500)</td>
+      <td style="text-align: left;">New</td>
+      <td style="text-align: left;">Minimum viable. 500GB holds OS + 3-4 big games.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">$35-45</td>
+      <td style="text-align: left;">1TB NVMe Gen3 (Kingston NV2, WD Blue SN570)</td>
+      <td style="text-align: left;">New</td>
+      <td style="text-align: left;">Sweet spot. DRAM-less but fine for gaming.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">$50-65</td>
+      <td style="text-align: left;">1TB NVMe Gen3 with DRAM (Samsung 970 EVO Plus, SK hynix P31)</td>
+      <td style="text-align: left;">Used/New</td>
+      <td style="text-align: left;">Best 4K random. P31 is efficiency king for laptops.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">$25-35</td>
+      <td style="text-align: left;">500GB NVMe Gen3</td>
+      <td style="text-align: left;">Used</td>
+      <td style="text-align: left;">eBay pulls from laptop upgrades. Check SMART data.</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Do not buy QLC drives without DRAM for your only drive</strong> (Crucial P3, WD Blue SN580, Kingston NV2 are QLC but fine as secondary game drives). For boot drive, spend the extra $10 for TLC + DRAM (P31, 970 EVO Plus, WD Black SN770).</p>
 <h3>Migration Commands (Linux)</h3>
 <pre><code># Clone SATA SSD to NVMe (both attached)
@@ -105,12 +205,42 @@ sudo resize2fs /dev/nvme0n1p2</code></pre>
 <p>Use Macrium Reflect Free (trial) or Samsung Data Migration (for Samsung drives). Boot from USB, clone, swap drives, done.</p>
 <h2>Resolution Scaling Math: 1080p vs 900p vs 720p</h2>
 <p>Pixel counts determine GPU load. Your GTX 960/970/1060/RX 470/570/580 have fixed shader throughput. Fewer pixels = higher FPS. Linear relationship.</p>
-<p>| Resolution | Pixels | vs 1080p | Typical FPS Gain (GPU-bound) |</p>
-<p>|------------|--------|----------|------------------------------|</p>
-<p>| 1920×1080 (1080p) | 2,073,600 | 100% | Baseline |</p>
-<p>| 1600×900 (900p) | 1,440,000 | <strong>69.4%</strong> | <strong>+44%</strong> |</p>
-<p>| 1366×768 (768p) | 1,049,088 | 50.6% | <strong>+98%</strong> |</p>
-<p>| 1280×720 (720p) | 921,600 | 44.4% | <strong>+125%</strong> |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Resolution</th>
+      <th style="text-align: left;">Pixels</th>
+      <th style="text-align: left;">vs 1080p</th>
+      <th style="text-align: left;">Typical FPS Gain (GPU-bound)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">1920×1080 (1080p)</td>
+      <td style="text-align: left;">2,073,600</td>
+      <td style="text-align: left;">100%</td>
+      <td style="text-align: left;">Baseline</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">1600×900 (900p)</td>
+      <td style="text-align: left;">1,440,000</td>
+      <td style="text-align: left;"><strong>69.4%</strong></td>
+      <td style="text-align: left;"><strong>+44%</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">1366×768 (768p)</td>
+      <td style="text-align: left;">1,049,088</td>
+      <td style="text-align: left;">50.6%</td>
+      <td style="text-align: left;"><strong>+98%</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">1280×720 (720p)</td>
+      <td style="text-align: left;">921,600</td>
+      <td style="text-align: left;">44.4%</td>
+      <td style="text-align: left;"><strong>+125%</strong></td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>900p is the sweet spot.</strong> You get 44% more frames for 30% fewer pixels. Image quality loss is minimal on 22-24&quot; monitors. 720p looks soft on anything above 20&quot;.</p>
 <h3>In-Game Scaling vs GPU Scaling</h3>
 <p><strong>In-game resolution scale (render resolution):</strong> Renders at lower res, upscales to output res. Best quality. Use this.</p>
@@ -164,29 +294,97 @@ sudo resize2fs /dev/nvme0n1p2</code></pre>
 <li>Strength 1 = Ultra Quality (1.3x), 2 = Quality (1.5x), 3 = Balanced (1.7x), 4 = Performance (2.0x)</li>
 </ul>
 <h3>What Does NOT Work (Stop Using These)</h3>
-<p>| Option | Why It&#x27;s Useless |</p>
-<p>|--------|------------------|</p>
-<p>| <code>-USEALLAVAILABLECORES</code> | Source engine only, does nothing on modern engines |</p>
-<p>| <code>-heapsize</code> | Engine ignores it; memory managed by OS |</p>
-<p>| <code>-sm4</code> / <code>-sm5</code> | Shader model flags deprecated |</p>
-<p>| <code>-nomansky</code> / <code>-nomsaa</code> | Made-up options spread by copy-paste blogs |</p>
-<p>| <code>-freq 144</code> | Games read monitor EDID; this does nothing |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Option</th>
+      <th style="text-align: left;">Why It&#x27;s Useless</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><code>-USEALLAVAILABLECORES</code></td>
+      <td style="text-align: left;">Source engine only, does nothing on modern engines</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><code>-heapsize</code></td>
+      <td style="text-align: left;">Engine ignores it; memory managed by OS</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><code>-sm4</code> / <code>-sm5</code></td>
+      <td style="text-align: left;">Shader model flags deprecated</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><code>-nomansky</code> / <code>-nomsaa</code></td>
+      <td style="text-align: left;">Made-up options spread by copy-paste blogs</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><code>-freq 144</code></td>
+      <td style="text-align: left;">Games read monitor EDID; this does nothing</td>
+    </tr>
+  </tbody>
+</table>
 <h2>GPU Tweaks: GTX 960/970/1060 / RX 470/570/580</h2>
 <p>These are the cards you actually have. Here&#x27;s what moves the needle.</p>
 <h3>Nvidia Pascal (GTX 1060 3GB/6GB, 1050 Ti, 960, 970)</h3>
 <p><strong>Driver Version:</strong> <strong>550.90</strong> (latest as of 2026-07). Do not use 560+ — they drop Kepler support and add telemetry overhead. 550 branch is last fully-optimized for Pascal.</p>
 <p><strong>Nvidia Control Panel → Manage 3D Settings (Global or per-game):</strong></p>
-<p>| Setting | Value | Why |</p>
-<p>|---------|-------|-----|</p>
-<p>| Power Management Mode | Prefer Maximum Performance | Prevents downclocking at low load |</p>
-<p>| Texture Filtering - Quality | High Performance | Trilinear → bilinear, ~3-5% FPS |</p>
-<p>| Texture Filtering - Negative LOD Bias | Clamp | Prevents sharpening artifacts |</p>
-<p>| Threaded Optimization | On | Offloads driver work to background thread |</p>
-<p>| Vertical Sync | Off (use in-game/RTSS) | Driver VSync adds 1 frame latency |</p>
-<p>| Low Latency Mode | Ultra | Reduces render queue (DX11/Vulkan) |</p>
-<p>| Shader Cache | On | Reduces stutter on first runs |</p>
-<p>| Ambient Occlusion | Off | Let game control it |</p>
-<p>| Anisotropic Filtering | Application-controlled | 16x costs 2-3% on these cards |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Setting</th>
+      <th style="text-align: left;">Value</th>
+      <th style="text-align: left;">Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Power Management Mode</td>
+      <td style="text-align: left;">Prefer Maximum Performance</td>
+      <td style="text-align: left;">Prevents downclocking at low load</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Texture Filtering - Quality</td>
+      <td style="text-align: left;">High Performance</td>
+      <td style="text-align: left;">Trilinear → bilinear, ~3-5% FPS</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Texture Filtering - Negative LOD Bias</td>
+      <td style="text-align: left;">Clamp</td>
+      <td style="text-align: left;">Prevents sharpening artifacts</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Threaded Optimization</td>
+      <td style="text-align: left;">On</td>
+      <td style="text-align: left;">Offloads driver work to background thread</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Vertical Sync</td>
+      <td style="text-align: left;">Off (use in-game/RTSS)</td>
+      <td style="text-align: left;">Driver VSync adds 1 frame latency</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Low Latency Mode</td>
+      <td style="text-align: left;">Ultra</td>
+      <td style="text-align: left;">Reduces render queue (DX11/Vulkan)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Shader Cache</td>
+      <td style="text-align: left;">On</td>
+      <td style="text-align: left;">Reduces stutter on first runs</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Ambient Occlusion</td>
+      <td style="text-align: left;">Off</td>
+      <td style="text-align: left;">Let game control it</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Anisotropic Filtering</td>
+      <td style="text-align: left;">Application-controlled</td>
+      <td style="text-align: left;">16x costs 2-3% on these cards</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Environment Variables (Linux/Proton):</strong></p>
 <pre><code># ~/.profile or /etc/environment
 export __GL_THREADED_OPTIMIZATIONS=1
@@ -195,12 +393,52 @@ export __GL_YIELD=NOTHING
 export GL_THREADED_OPTIMIZATIONS=1
 export VK_LAYER_NV_optimus=NVIDIA_only  # laptop Optimus only</code></pre>
 <p><strong>Overclock (MSI Afterburner / nvidia-settings):</strong></p>
-<p>| Card | Core Offset | Mem Offset | Power Limit | Temp Limit | Typical Gain |</p>
-<p>|------|-------------|------------|-------------|------------|--------------|</p>
-<p>| GTX 1060 6GB | +100-150 MHz | +400-600 MHz | 110-115% | 83°C | +8-12% |</p>
-<p>| GTX 1060 3GB | +75-100 MHz | +300-400 MHz | 110% | 83°C | +5-8% |</p>
-<p>| GTX 970 | +50-80 MHz | +200-300 MHz | 110% | 80°C | +5-7% |</p>
-<p>| GTX 960 | +50-80 MHz | +200-300 MHz | 110% | 80°C | +5-7% |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Card</th>
+      <th style="text-align: left;">Core Offset</th>
+      <th style="text-align: left;">Mem Offset</th>
+      <th style="text-align: left;">Power Limit</th>
+      <th style="text-align: left;">Temp Limit</th>
+      <th style="text-align: left;">Typical Gain</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">GTX 1060 6GB</td>
+      <td style="text-align: left;">+100-150 MHz</td>
+      <td style="text-align: left;">+400-600 MHz</td>
+      <td style="text-align: left;">110-115%</td>
+      <td style="text-align: left;">83°C</td>
+      <td style="text-align: left;">+8-12%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">GTX 1060 3GB</td>
+      <td style="text-align: left;">+75-100 MHz</td>
+      <td style="text-align: left;">+300-400 MHz</td>
+      <td style="text-align: left;">110%</td>
+      <td style="text-align: left;">83°C</td>
+      <td style="text-align: left;">+5-8%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">GTX 970</td>
+      <td style="text-align: left;">+50-80 MHz</td>
+      <td style="text-align: left;">+200-300 MHz</td>
+      <td style="text-align: left;">110%</td>
+      <td style="text-align: left;">80°C</td>
+      <td style="text-align: left;">+5-7%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">GTX 960</td>
+      <td style="text-align: left;">+50-80 MHz</td>
+      <td style="text-align: left;">+200-300 MHz</td>
+      <td style="text-align: left;">110%</td>
+      <td style="text-align: left;">80°C</td>
+      <td style="text-align: left;">+5-7%</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Memory overclock matters more than core on Pascal.</strong> GDDR5/X scales well. Test with <code>memtestg80</code> (Linux) or OCCT (Windows) for stability.</p>
 <p><strong>3GB VRAM Wall:</strong> GTX 1060 3GB / GTX 960 2GB — you will hit VRAM limits in 2026 games at 1080p.</p>
 <ul>
@@ -221,26 +459,84 @@ echo &quot;high&quot; | sudo tee /sys/class/drm/card0/device/power_dpm_force_per
 
 # Or use radeon-profile (GUI) / corectrl</code></pre>
 <p><strong>Windows Adrenalin Settings (Global):</strong></p>
-<p>| Setting | Value |</p>
-<p>|---------|-------|</p>
-<p>| Power Tuning | +10% to +20% (Power Limit) |</p>
-<p>| Temperature Limit | 85-90°C |</p>
-<p>| Minimum Clock | 1000 MHz (prevents downclock stutter) |</p>
-<p>| Chill | Off |</p>
-<p>| Anti-Lag | On (DX11 only) |</p>
-<p>| Radeon Boost | On (Dynamic resolution, saves 15-20%) |</p>
-<p>| Image Sharpening | Off (use FSR instead) |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Setting</th>
+      <th style="text-align: left;">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Power Tuning</td>
+      <td style="text-align: left;">+10% to +20% (Power Limit)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Temperature Limit</td>
+      <td style="text-align: left;">85-90°C</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Minimum Clock</td>
+      <td style="text-align: left;">1000 MHz (prevents downclock stutter)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Chill</td>
+      <td style="text-align: left;">Off</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Anti-Lag</td>
+      <td style="text-align: left;">On (DX11 only)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Radeon Boost</td>
+      <td style="text-align: left;">On (Dynamic resolution, saves 15-20%)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Image Sharpening</td>
+      <td style="text-align: left;">Off (use FSR instead)</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Environment Variables (Linux/Mesa):</strong></p>
 <pre><code>export RADV_PERFTEST=aco,gpl,nggc  # ACO compiler + geometric pipeline + NGG culling
 export AMD_DEBUG=w32ge,w32cs       # 32-bit game workarounds
 export MESA_VK_DEVICE_SELECT=1002:67df  # Force specific GPU (lspci -nn)
 export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json</code></pre>
 <p><strong>Overclock (CoreCtrl / radeon-profile / WattMan):</strong></p>
-<p>| Card | Core Clock | Mem Clock | Power Limit | Typical Gain |</p>
-<p>|------|------------|-----------|-------------|--------------|</p>
-<p>| RX 580 8GB | 1400-1450 MHz | 2100-2200 MHz | +20% | +10-15% |</p>
-<p>| RX 570 4GB | 1300-1350 MHz | 1900-2000 MHz | +15% | +8-12% |</p>
-<p>| RX 470 4GB | 1250-1300 MHz | 1800-1900 MHz | +15% | +8-10% |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Card</th>
+      <th style="text-align: left;">Core Clock</th>
+      <th style="text-align: left;">Mem Clock</th>
+      <th style="text-align: left;">Power Limit</th>
+      <th style="text-align: left;">Typical Gain</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">RX 580 8GB</td>
+      <td style="text-align: left;">1400-1450 MHz</td>
+      <td style="text-align: left;">2100-2200 MHz</td>
+      <td style="text-align: left;">+20%</td>
+      <td style="text-align: left;">+10-15%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">RX 570 4GB</td>
+      <td style="text-align: left;">1300-1350 MHz</td>
+      <td style="text-align: left;">1900-2000 MHz</td>
+      <td style="text-align: left;">+15%</td>
+      <td style="text-align: left;">+8-12%</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">RX 470 4GB</td>
+      <td style="text-align: left;">1250-1300 MHz</td>
+      <td style="text-align: left;">1800-1900 MHz</td>
+      <td style="text-align: left;">+15%</td>
+      <td style="text-align: left;">+8-10%</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Polaris undervolting is free performance.</strong> Drop voltage by 50-100mV at target clock. Lower temps → higher sustained boost → more FPS.</p>
 <p><strong>VRAM Advantage:</strong> 8GB models (RX 570/580 8GB) run 2026 games at 1080p Medium textures. 4GB models need 900p + Low textures. This is the single biggest differentiator.</p>
 <h3>Intel Arc (A380/A750) — Bonus</h3>
@@ -253,36 +549,223 @@ export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json</code></p
 </ul>
 <h2>&quot;Will It Run&quot; Test: FPS Targets by Game (2026 Titles)</h2>
 <p>Test methodology: i5-6500, 16GB DDR4-2666, GTX 1060 6GB, NVMe SSD, Windows 10 22H2 / Arch Linux kernel 6.9, 900p Low/Medium, FSR Quality where available. 1% lows in parentheses.</p>
-<p>| Game | API | Preset | Avg FPS | 1% Low | Verdict |</p>
-<p>|------|-----|--------|---------|--------|---------|</p>
-<p>| <strong>Cyberpunk 2077 2.1</strong> | DX12 | Low, FSR Qual | 52 | 38 | ✅ Playable |</p>
-<p>| <strong>Baldur&#x27;s Gate 3</strong> | Vulkan | Med, FSR Qual | 58 | 42 | ✅ Playable |</p>
-<p>| <strong>Hogwarts Legacy</strong> | DX12 | Low, FSR Bal | 48 | 32 | ⚠️ Stutters on traversal |</p>
-<p>| <strong>Elden Ring</strong> | DX12 | Low | 62 | 55 | ✅ Great |</p>
-<p>| <strong>Remnant 2</strong> | DX12 | Low, FSR Perf | 42 | 28 | ⚠️ CPU bound in co-op |</p>
-<p>| <strong>Alan Wake 2</strong> | DX12 | Low, FSR Bal | 35 | 22 | ❌ Below 60, heavy RT |</p>
-<p>| <strong>Starfield</strong> | DX12 | Low, FSR Qual | 38 | 25 | ⚠️ CPU bound, needs mods |</p>
-<p>| <strong>Avatar: Frontiers of Pandora</strong> | DX12 | Low, FSR Perf | 32 | 18 | ❌ Unplayable |</p>
-<p>| <strong>Helldivers 2</strong> | DX12 | Med, FSR Qual | 55 | 40 | ✅ Playable |</p>
-<p>| <strong>Dragon&#x27;s Dogma 2</strong> | DX12 | Low, FSR Bal | 40 | 24 | ⚠️ Severe CPU bound |</p>
-<p>| <strong>Tekken 8</strong> | DX12 | Low | 60 | 58 | ✅ Locked 60 |</p>
-<p>| <strong>Street Fighter 6</strong> | DX11 | Low | 85 | 72 | ✅ Great |</p>
-<p>| <strong>Baldur&#x27;s Gate 3 (Act 3)</strong> | Vulkan | Med, FSR Qual | 45 | 30 | ⚠️ CPU spikes |</p>
-<p>| <strong>Manor Lords</strong> | DX11 | Low | 48 | 35 | ✅ Playable |</p>
-<p>| <strong>Pacific Drive</strong> | DX11 | Med, FSR Qual | 55 | 42 | ✅ Playable |</p>
-<p>| <strong>The Finals</strong> | DX12 | Low, FSR Qual | 65 | 48 | ✅ Great |</p>
-<p>| <strong>Warhammer 40K: Darktide</strong> | DX12 | Low, FSR Bal | 42 | 28 | ⚠️ CPU bound in hordes |</p>
-<p>| <strong>Lethal Company</strong> | Unity | Low | 120 | 90 | ✅ Great |</p>
-<p>| <strong>Content Warning</strong> | Unity | Low | 90 | 70 | ✅ Great |</p>
-<p>| <strong>Balatro</strong> | Native | - | 300+ | 280 | ✅ Overkill |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Game</th>
+      <th style="text-align: left;">API</th>
+      <th style="text-align: left;">Preset</th>
+      <th style="text-align: left;">Avg FPS</th>
+      <th style="text-align: left;">1% Low</th>
+      <th style="text-align: left;">Verdict</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>Cyberpunk 2077 2.1</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Qual</td>
+      <td style="text-align: left;">52</td>
+      <td style="text-align: left;">38</td>
+      <td style="text-align: left;">✅ Playable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Baldur&#x27;s Gate 3</strong></td>
+      <td style="text-align: left;">Vulkan</td>
+      <td style="text-align: left;">Med, FSR Qual</td>
+      <td style="text-align: left;">58</td>
+      <td style="text-align: left;">42</td>
+      <td style="text-align: left;">✅ Playable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Hogwarts Legacy</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Bal</td>
+      <td style="text-align: left;">48</td>
+      <td style="text-align: left;">32</td>
+      <td style="text-align: left;">⚠️ Stutters on traversal</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Elden Ring</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low</td>
+      <td style="text-align: left;">62</td>
+      <td style="text-align: left;">55</td>
+      <td style="text-align: left;">✅ Great</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Remnant 2</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Perf</td>
+      <td style="text-align: left;">42</td>
+      <td style="text-align: left;">28</td>
+      <td style="text-align: left;">⚠️ CPU bound in co-op</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Alan Wake 2</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Bal</td>
+      <td style="text-align: left;">35</td>
+      <td style="text-align: left;">22</td>
+      <td style="text-align: left;">❌ Below 60, heavy RT</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Starfield</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Qual</td>
+      <td style="text-align: left;">38</td>
+      <td style="text-align: left;">25</td>
+      <td style="text-align: left;">⚠️ CPU bound, needs mods</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Avatar: Frontiers of Pandora</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Perf</td>
+      <td style="text-align: left;">32</td>
+      <td style="text-align: left;">18</td>
+      <td style="text-align: left;">❌ Unplayable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Helldivers 2</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Med, FSR Qual</td>
+      <td style="text-align: left;">55</td>
+      <td style="text-align: left;">40</td>
+      <td style="text-align: left;">✅ Playable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Dragon&#x27;s Dogma 2</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Bal</td>
+      <td style="text-align: left;">40</td>
+      <td style="text-align: left;">24</td>
+      <td style="text-align: left;">⚠️ Severe CPU bound</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Tekken 8</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low</td>
+      <td style="text-align: left;">60</td>
+      <td style="text-align: left;">58</td>
+      <td style="text-align: left;">✅ Locked 60</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Street Fighter 6</strong></td>
+      <td style="text-align: left;">DX11</td>
+      <td style="text-align: left;">Low</td>
+      <td style="text-align: left;">85</td>
+      <td style="text-align: left;">72</td>
+      <td style="text-align: left;">✅ Great</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Baldur&#x27;s Gate 3 (Act 3)</strong></td>
+      <td style="text-align: left;">Vulkan</td>
+      <td style="text-align: left;">Med, FSR Qual</td>
+      <td style="text-align: left;">45</td>
+      <td style="text-align: left;">30</td>
+      <td style="text-align: left;">⚠️ CPU spikes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Manor Lords</strong></td>
+      <td style="text-align: left;">DX11</td>
+      <td style="text-align: left;">Low</td>
+      <td style="text-align: left;">48</td>
+      <td style="text-align: left;">35</td>
+      <td style="text-align: left;">✅ Playable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Pacific Drive</strong></td>
+      <td style="text-align: left;">DX11</td>
+      <td style="text-align: left;">Med, FSR Qual</td>
+      <td style="text-align: left;">55</td>
+      <td style="text-align: left;">42</td>
+      <td style="text-align: left;">✅ Playable</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>The Finals</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Qual</td>
+      <td style="text-align: left;">65</td>
+      <td style="text-align: left;">48</td>
+      <td style="text-align: left;">✅ Great</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Warhammer 40K: Darktide</strong></td>
+      <td style="text-align: left;">DX12</td>
+      <td style="text-align: left;">Low, FSR Bal</td>
+      <td style="text-align: left;">42</td>
+      <td style="text-align: left;">28</td>
+      <td style="text-align: left;">⚠️ CPU bound in hordes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Lethal Company</strong></td>
+      <td style="text-align: left;">Unity</td>
+      <td style="text-align: left;">Low</td>
+      <td style="text-align: left;">120</td>
+      <td style="text-align: left;">90</td>
+      <td style="text-align: left;">✅ Great</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Content Warning</strong></td>
+      <td style="text-align: left;">Unity</td>
+      <td style="text-align: left;">Low</td>
+      <td style="text-align: left;">90</td>
+      <td style="text-align: left;">70</td>
+      <td style="text-align: left;">✅ Great</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Balatro</strong></td>
+      <td style="text-align: left;">Native</td>
+      <td style="text-align: left;">-</td>
+      <td style="text-align: left;">300+</td>
+      <td style="text-align: left;">280</td>
+      <td style="text-align: left;">✅ Overkill</td>
+    </tr>
+  </tbody>
+</table>
 <h3>FPS Targets by Genre</h3>
-<p>| Genre | Minimum Playable | Comfortable | Competitive |</p>
-<p>|-------|------------------|-------------|-------------|</p>
-<p>| FPS (single-player) | 40 | 55 | 75+ |</p>
-<p>| FPS (multiplayer) | 60 | 90 | 120+ |</p>
-<p>| RPG/Strategy | 30 | 45 | 60+ |</p>
-<p>| Fighting/Rhythm | 60 (locked) | 60 | 120+ |</p>
-<p>| Sim/Management | 25 | 35 | 60+ |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Genre</th>
+      <th style="text-align: left;">Minimum Playable</th>
+      <th style="text-align: left;">Comfortable</th>
+      <th style="text-align: left;">Competitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">FPS (single-player)</td>
+      <td style="text-align: left;">40</td>
+      <td style="text-align: left;">55</td>
+      <td style="text-align: left;">75+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">FPS (multiplayer)</td>
+      <td style="text-align: left;">60</td>
+      <td style="text-align: left;">90</td>
+      <td style="text-align: left;">120+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">RPG/Strategy</td>
+      <td style="text-align: left;">30</td>
+      <td style="text-align: left;">45</td>
+      <td style="text-align: left;">60+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Fighting/Rhythm</td>
+      <td style="text-align: left;">60 (locked)</td>
+      <td style="text-align: left;">60</td>
+      <td style="text-align: left;">120+</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Sim/Management</td>
+      <td style="text-align: left;">25</td>
+      <td style="text-align: left;">35</td>
+      <td style="text-align: left;">60+</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>1% lows matter more than average.</strong> A 60 avg with 15 lows feels worse than 45 avg with 38 lows. Cap framerate to 1% low × 1.5 for consistency (RTSS or in-game cap).</p>
 <h2>Thermal Throttling Diagnosis: Is Your Hardware Slowing Down?</h2>
 <h3>The Tools</h3>
@@ -302,20 +785,94 @@ watch -n 2 sensors      # Live
 turbostat --show CPU,Core,Busy%,Bzy_MHz,IRQ,CPU%c1,CPU%c6,CPU%c7,CoreTmp,PkgTmp  # Linux
 # Windows: HWiNFO64 → Sensors → &quot;CPU Throttling&quot; / &quot;Thermal Throttling&quot; flags</code></pre>
 <h3>What to Look For</h3>
-<p>| Symptom | Diagnosis | Fix |</p>
-<p>|---------|-----------|-----|</p>
-<p>| GPU clock drops 200+ MHz under load, temp 83°C | <strong>Thermal throttle</strong> (Nvidia 83°C hard limit) | Clean heatsink, replace paste, increase fan curve, undervolt |</p>
-<p>| GPU clock drops, temp 70°C, power 90% of limit | <strong>Power throttle</strong> | Increase power limit (+10-15%), undervolt |</p>
-<p>| CPU clock drops to 800 MHz, Package temp 95-100°C | <strong>CPU thermal throttle</strong> | Clean cooler, replace paste, check fan curve, undervolt |</p>
-<p>| CPU clock drops, temp 70°C, PL1/PL2 limits hit | <strong>Power limit throttle</strong> | Increase PL1/PL2 in BIOS (if unlocked), undervolt |</p>
-<p>| Stutter every 10-30s, clocks normal | <strong>VRAM throttle / shader cache</strong> | Lower textures, enable shader cache, more RAM |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Symptom</th>
+      <th style="text-align: left;">Diagnosis</th>
+      <th style="text-align: left;">Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">GPU clock drops 200+ MHz under load, temp 83°C</td>
+      <td style="text-align: left;"><strong>Thermal throttle</strong> (Nvidia 83°C hard limit)</td>
+      <td style="text-align: left;">Clean heatsink, replace paste, increase fan curve, undervolt</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">GPU clock drops, temp 70°C, power 90% of limit</td>
+      <td style="text-align: left;"><strong>Power throttle</strong></td>
+      <td style="text-align: left;">Increase power limit (+10-15%), undervolt</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">CPU clock drops to 800 MHz, Package temp 95-100°C</td>
+      <td style="text-align: left;"><strong>CPU thermal throttle</strong></td>
+      <td style="text-align: left;">Clean cooler, replace paste, check fan curve, undervolt</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">CPU clock drops, temp 70°C, PL1/PL2 limits hit</td>
+      <td style="text-align: left;"><strong>Power limit throttle</strong></td>
+      <td style="text-align: left;">Increase PL1/PL2 in BIOS (if unlocked), undervolt</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Stutter every 10-30s, clocks normal</td>
+      <td style="text-align: left;"><strong>VRAM throttle / shader cache</strong></td>
+      <td style="text-align: left;">Lower textures, enable shader cache, more RAM</td>
+    </tr>
+  </tbody>
+</table>
 <h3>My i5-6500 + GTX 1060 Thermal Data</h3>
-<p>| State | CPU Package | GPU Core | GPU Hotspot | GPU Mem Junction | Fan RPM | Power Draw |</p>
-<p>|-------|-------------|----------|-------------|------------------|---------|------------|</p>
-<p>| Idle | 32°C | 30°C | 34°C | 32°C | 0 (semi-passive) | 8W / 15W |</p>
-<p>| Cyberpunk 1080p Low | 68°C | 72°C | 81°C | 78°C | 1800 / 2200 | 58W / 115W |</p>
-<p>| Cyberpunk 900p Low | 62°C | 66°C | 74°C | 70°C | 1400 / 1800 | 52W / 102W |</p>
-<p>| Furmark (stress) | 78°C | 83°C | 92°C | 88°C | 2400 / 3000 | 65W / 125W |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">State</th>
+      <th style="text-align: left;">CPU Package</th>
+      <th style="text-align: left;">GPU Core</th>
+      <th style="text-align: left;">GPU Hotspot</th>
+      <th style="text-align: left;">GPU Mem Junction</th>
+      <th style="text-align: left;">Fan RPM</th>
+      <th style="text-align: left;">Power Draw</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Idle</td>
+      <td style="text-align: left;">32°C</td>
+      <td style="text-align: left;">30°C</td>
+      <td style="text-align: left;">34°C</td>
+      <td style="text-align: left;">32°C</td>
+      <td style="text-align: left;">0 (semi-passive)</td>
+      <td style="text-align: left;">8W / 15W</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Cyberpunk 1080p Low</td>
+      <td style="text-align: left;">68°C</td>
+      <td style="text-align: left;">72°C</td>
+      <td style="text-align: left;">81°C</td>
+      <td style="text-align: left;">78°C</td>
+      <td style="text-align: left;">1800 / 2200</td>
+      <td style="text-align: left;">58W / 115W</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Cyberpunk 900p Low</td>
+      <td style="text-align: left;">62°C</td>
+      <td style="text-align: left;">66°C</td>
+      <td style="text-align: left;">74°C</td>
+      <td style="text-align: left;">70°C</td>
+      <td style="text-align: left;">1400 / 1800</td>
+      <td style="text-align: left;">52W / 102W</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Furmark (stress)</td>
+      <td style="text-align: left;">78°C</td>
+      <td style="text-align: left;">83°C</td>
+      <td style="text-align: left;">92°C</td>
+      <td style="text-align: left;">88°C</td>
+      <td style="text-align: left;">2400 / 3000</td>
+      <td style="text-align: left;">65W / 125W</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>900p drops GPU temp 6-8°C and power 10-15W.</strong> That&#x27;s the difference between throttling and not throttling on a dusty 2016 cooler.</p>
 <h3>Cleaning Protocol (Do This Before Buying Anything)</h3>
 <pre><code># 1. Open case. Ground yourself.
@@ -330,18 +887,100 @@ turbostat --show CPU,Core,Busy%,Bzy_MHz,IRQ,CPU%c1,CPU%c6,CPU%c7,CoreTmp,PkgTmp 
 <p><strong>Cost:</strong> $15 for paste + pads + compressed air. <strong>Gain:</strong> 5-15°C drop, eliminates throttle.</p>
 <h2>Budget Upgrade Table: Used Prices (US eBay / Local / EU, July 2026)</h2>
 <p>Prices are <strong>shipped/fees-in</strong> for working pulls. &quot;Local&quot; = Facebook Marketplace / Craigslist / OfferUp (no shipping, cash).</p>
-<p>| Upgrade | Used Price (US) | Used Price (EU) | Performance Gain | Effort | Worth It? |</p>
-<p>|---------|-----------------|-----------------|------------------|--------|-----------|</p>
-<p>| <strong>SSD: 1TB NVMe Gen3 (SN570/NV2/P31)</strong> | $45-55 | €50-60 | Load times -40%, stutter fix | 10 min | ✅ <strong>Yes #1</strong> |</p>
-<p>| <strong>RAM: 16GB→32GB DDR4-3200 (2×16GB)</strong> | $35-45 | €40-50 | 1% lows +15-25%, no OOM | 5 min | ✅ <strong>Yes #2</strong> |</p>
-<p>| <strong>GPU: GTX 1060 6GB → RTX 2060 6GB / RX 6600</strong> | $140-160 / $160-180 | €160-180 / €180-200 | +40-60% raster, DLSS/FSR2 | 10 min | ✅ <strong>Yes #3</strong> |</p>
-<p>| <strong>GPU: GTX 960/970 → RX 6600 / RTX 3060 12GB</strong> | $160-180 / $220-250 | €180-200 / €240-270 | +80-120%, 8GB/12GB VRAM | 10 min | ✅ <strong>Yes #4</strong> |</p>
-<p>| <strong>CPU: i5-6400 → i7-6700 / i7-7700 (Kaby)</strong> | $45-55 / $60-70 | €50-60 / €65-75 | +HT, +15-20% ST | 15 min + BIOS | ⚠️ Marginal |</p>
-<p>| <strong>CPU: i5-6400/6500 → i5-10400F + B460 + 16GB DDR4</strong> | $160-180 total | €180-200 total | +2C/4T, +35% ST, DDR4-2666 | 45 min | ✅ <strong>Yes #5</strong> |</p>
-<p>| <strong>CPU: FX-8350 → R5 5600 + B450 + 16GB DDR4</strong> | $170-190 total | €190-210 total | +6C/12T, +80% ST, PCIe 4.0 | 45 min | ✅ <strong>Yes #6</strong> |</p>
-<p>| <strong>PSU: 450W Bronze → 550-650W Gold (RM550x/Focus GX)</strong> | $45-60 | €55-70 | Stability, headroom, quiet | 20 min | ✅ If &lt;500W |</p>
-<p>| <strong>Case fans: 2× Arctic P12 PWM</strong> | $14-18 | €16-20 | -5-10°C GPU/CPU, quiet | 10 min | ✅ Cheap win |</p>
-<p>| <strong>CPU cooler: Thermalright Assassin X120 / Peerless Assassin</strong> | $18-25 | €22-28 | -10-15°C vs stock, silent | 15 min | ✅ If &gt;75°C |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Upgrade</th>
+      <th style="text-align: left;">Used Price (US)</th>
+      <th style="text-align: left;">Used Price (EU)</th>
+      <th style="text-align: left;">Performance Gain</th>
+      <th style="text-align: left;">Effort</th>
+      <th style="text-align: left;">Worth It?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>SSD: 1TB NVMe Gen3 (SN570/NV2/P31)</strong></td>
+      <td style="text-align: left;">$45-55</td>
+      <td style="text-align: left;">€50-60</td>
+      <td style="text-align: left;">Load times -40%, stutter fix</td>
+      <td style="text-align: left;">10 min</td>
+      <td style="text-align: left;">✅ <strong>Yes #1</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>RAM: 16GB→32GB DDR4-3200 (2×16GB)</strong></td>
+      <td style="text-align: left;">$35-45</td>
+      <td style="text-align: left;">€40-50</td>
+      <td style="text-align: left;">1% lows +15-25%, no OOM</td>
+      <td style="text-align: left;">5 min</td>
+      <td style="text-align: left;">✅ <strong>Yes #2</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>GPU: GTX 1060 6GB → RTX 2060 6GB / RX 6600</strong></td>
+      <td style="text-align: left;">$140-160 / $160-180</td>
+      <td style="text-align: left;">€160-180 / €180-200</td>
+      <td style="text-align: left;">+40-60% raster, DLSS/FSR2</td>
+      <td style="text-align: left;">10 min</td>
+      <td style="text-align: left;">✅ <strong>Yes #3</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>GPU: GTX 960/970 → RX 6600 / RTX 3060 12GB</strong></td>
+      <td style="text-align: left;">$160-180 / $220-250</td>
+      <td style="text-align: left;">€180-200 / €240-270</td>
+      <td style="text-align: left;">+80-120%, 8GB/12GB VRAM</td>
+      <td style="text-align: left;">10 min</td>
+      <td style="text-align: left;">✅ <strong>Yes #4</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>CPU: i5-6400 → i7-6700 / i7-7700 (Kaby)</strong></td>
+      <td style="text-align: left;">$45-55 / $60-70</td>
+      <td style="text-align: left;">€50-60 / €65-75</td>
+      <td style="text-align: left;">+HT, +15-20% ST</td>
+      <td style="text-align: left;">15 min + BIOS</td>
+      <td style="text-align: left;">⚠️ Marginal</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>CPU: i5-6400/6500 → i5-10400F + B460 + 16GB DDR4</strong></td>
+      <td style="text-align: left;">$160-180 total</td>
+      <td style="text-align: left;">€180-200 total</td>
+      <td style="text-align: left;">+2C/4T, +35% ST, DDR4-2666</td>
+      <td style="text-align: left;">45 min</td>
+      <td style="text-align: left;">✅ <strong>Yes #5</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>CPU: FX-8350 → R5 5600 + B450 + 16GB DDR4</strong></td>
+      <td style="text-align: left;">$170-190 total</td>
+      <td style="text-align: left;">€190-210 total</td>
+      <td style="text-align: left;">+6C/12T, +80% ST, PCIe 4.0</td>
+      <td style="text-align: left;">45 min</td>
+      <td style="text-align: left;">✅ <strong>Yes #6</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>PSU: 450W Bronze → 550-650W Gold (RM550x/Focus GX)</strong></td>
+      <td style="text-align: left;">$45-60</td>
+      <td style="text-align: left;">€55-70</td>
+      <td style="text-align: left;">Stability, headroom, quiet</td>
+      <td style="text-align: left;">20 min</td>
+      <td style="text-align: left;">✅ If &lt;500W</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Case fans: 2× Arctic P12 PWM</strong></td>
+      <td style="text-align: left;">$14-18</td>
+      <td style="text-align: left;">€16-20</td>
+      <td style="text-align: left;">-5-10°C GPU/CPU, quiet</td>
+      <td style="text-align: left;">10 min</td>
+      <td style="text-align: left;">✅ Cheap win</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>CPU cooler: Thermalright Assassin X120 / Peerless Assassin</strong></td>
+      <td style="text-align: left;">$18-25</td>
+      <td style="text-align: left;">€22-28</td>
+      <td style="text-align: left;">-10-15°C vs stock, silent</td>
+      <td style="text-align: left;">15 min</td>
+      <td style="text-align: left;">✅ If &gt;75°C</td>
+    </tr>
+  </tbody>
+</table>
 <h3>Upgrade Priority Order (Best $/FPS)</h3>
 <ol>
 <li><strong>NVMe SSD</strong> — fixes stutter, load times, quality of life. $45.</li>
@@ -349,17 +988,43 @@ turbostat --show CPU,Core,Busy%,Bzy_MHz,IRQ,CPU%c1,CPU%c6,CPU%c7,CoreTmp,PkgTmp 
 <li><strong>GPU: RX 6600 / RTX 3060 12GB</strong> — single biggest FPS jump. $160-250.</li>
 <li><strong>Platform: i5-10400F / R5 5600</strong> — unlocks modern instruction sets, 6C/12T. $170-190.</li>
 <li><strong>PSU + fans + cooler</strong> — reliability, thermals, noise. $80 total.</li>
-</ul>
+</ol>
 <p><strong>Total for &quot;modern budget build&quot; (CPU+MB+RAM+GPU+SSD+PSU): ~$500-550 used.</strong> Runs everything at 1080p High / 1440p Medium 60+ FPS.</p>
 <h3>What NOT to Buy</h3>
-<p>| Component | Why |</p>
-<p>|-----------|-----|</p>
-<p>| GTX 1650 / 1660 / 1660 Super | Overpriced used ($100-130), 4-6GB VRAM, no DLSS/FSR2 hardware encode |</p>
-<p>| RTX 2060 6GB (unless &lt;$130) | 6GB VRAM wall in 2026; RTX 3060 12GB only $40 more |</p>
-<p>| RX 6500 XT / 6400 | PCIe 4.0 x4 only, 4GB VRAM, no media encoder — avoid |</p>
-<p>| DDR3 RAM (any speed) | Dead platform. Put money toward DDR4 platform swap. |</p>
-<p>| &quot;Gaming&quot; WiFi cards | $20 USB WiFi 6 dongle works fine. Save for GPU. |</p>
-<p>| RGB anything | Zero FPS. |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Component</th>
+      <th style="text-align: left;">Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">GTX 1650 / 1660 / 1660 Super</td>
+      <td style="text-align: left;">Overpriced used ($100-130), 4-6GB VRAM, no DLSS/FSR2 hardware encode</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">RTX 2060 6GB (unless &lt;$130)</td>
+      <td style="text-align: left;">6GB VRAM wall in 2026; RTX 3060 12GB only $40 more</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">RX 6500 XT / 6400</td>
+      <td style="text-align: left;">PCIe 4.0 x4 only, 4GB VRAM, no media encoder — avoid</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">DDR3 RAM (any speed)</td>
+      <td style="text-align: left;">Dead platform. Put money toward DDR4 platform swap.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">&quot;Gaming&quot; WiFi cards</td>
+      <td style="text-align: left;">$20 USB WiFi 6 dongle works fine. Save for GPU.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">RGB anything</td>
+      <td style="text-align: left;">Zero FPS.</td>
+    </tr>
+  </tbody>
+</table>
 <h2>Putting It All Together: My 2026 Config Files</h2>
 <h3>Steam Launch Options (Global → per-game override)</h3>
 <pre><code># Global (right-click Steam → Properties → General)

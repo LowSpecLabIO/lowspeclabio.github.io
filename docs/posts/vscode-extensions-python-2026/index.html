@@ -38,10 +38,27 @@
 <h2>1. Ruff — Extension ID: <code>charliermarsh.ruff</code></h2>
 <p><strong>Why it replaces flake8 + black + isort + pyupgrade + pydocstyle + pyupgrade + pyflakes + bandit + more</strong></p>
 <p>Ruff is written in Rust and uses a single pass over the AST. It replaces <strong>eleven</strong> separate tools. Benchmarks on a 50k-line Django codebase (Apple M2 Pro, 16 GB):</p>
-<p>| Tool | Time (cold) | Time (warm) |</p>
-<p>|------|-------------|-------------|</p>
-<p>| flake8 + black + isort + pyupgrade (sequential) | 12.4 s | 8.1 s |</p>
-<p>| <strong>Ruff (check + fix)</strong> | <strong>0.38 s</strong> | <strong>0.12 s</strong> |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Tool</th>
+      <th style="text-align: left;">Time (cold)</th>
+      <th style="text-align: left;">Time (warm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">flake8 + black + isort + pyupgrade (sequential)</td>
+      <td style="text-align: left;">12.4 s</td>
+      <td style="text-align: left;">8.1 s</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Ruff (check + fix)</strong></td>
+      <td style="text-align: left;"><strong>0.38 s</strong></td>
+      <td style="text-align: left;"><strong>0.12 s</strong></td>
+    </tr>
+  </tbody>
+</table>
 <p>That&#x27;s <strong>30–100× faster</strong>. Ruff also catches things the old stack misses: unused imports (F401), unused variables (F841), <code>asyncio.run()</code> in async context (ASYNC241), <code>subprocess.run(shell=True)</code> (S602), and 800+ other rules.</p>
 <h3>Exact <code>pyproject.toml</code> Ruff config (drop-in replacement for black+isort+flake8+pyupgrade+pyupgrade)</h3>
 <pre><code>[tool.ruff]
@@ -298,15 +315,44 @@ class UserFactory(DjangoModelFactory):
 <li>Click &quot;Debug Test&quot; on <code>test_user_with_many_relations</code> — hits breakpoint in 0.8s</li>
 <li>Right-click <code>test_integration.py</code> → &quot;Run Tests in File&quot; — runs 47 integration tests in 12.1s</li>
 <li>Click &quot;Show Output&quot; on failed test → shows full traceback with clickable file:line links</li>
-</ul>
+</ol>
 <p><strong>Real performance on 120k-line Django project (pytest-django, 1,247 tests):</strong></p>
-<p>| Action | Built-in Test Explorer | littlefoxteam.vscode-python-test-adapter |</p>
-<p>|--------|------------------------|------------------------------------------|</p>
-<p>| Discover tests | 8.4s | <strong>1.2s</strong> |</p>
-<p>| Run all tests | 45.2s | <strong>23.4s</strong> |</p>
-<p>| Run single test | 2.1s | <strong>0.3s</strong> |</p>
-<p>| Debug single test | 4.8s | <strong>0.8s</strong> |</p>
-<p>| Re-run failed | 12.3s | <strong>3.1s</strong> |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Action</th>
+      <th style="text-align: left;">Built-in Test Explorer</th>
+      <th style="text-align: left;">littlefoxteam.vscode-python-test-adapter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Discover tests</td>
+      <td style="text-align: left;">8.4s</td>
+      <td style="text-align: left;"><strong>1.2s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Run all tests</td>
+      <td style="text-align: left;">45.2s</td>
+      <td style="text-align: left;"><strong>23.4s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Run single test</td>
+      <td style="text-align: left;">2.1s</td>
+      <td style="text-align: left;"><strong>0.3s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Debug single test</td>
+      <td style="text-align: left;">4.8s</td>
+      <td style="text-align: left;"><strong>0.8s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Re-run failed</td>
+      <td style="text-align: left;">12.3s</td>
+      <td style="text-align: left;"><strong>3.1s</strong></td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>One-paragraph setup:</strong></p>
 <p>Install <code>littlefoxteam.vscode-python-test-adapter</code>. Add <code>python.testing.pytestEnabled: true</code> and <code>python.testing.pytestArgs: [&quot;--tb=short&quot;, &quot;-q&quot;]</code> to <code>.vscode/settings.json</code>. Set <code>python.testing.cwd: &quot;${workspaceFolder}&quot;</code> if your <code>pytest.ini</code> lives at repo root. Open Test Explorer (beaker icon), click &quot;Configure Test Framework&quot; → pytest → select your <code>pytest.ini</code> location. Click the refresh icon — it discovers tests via <code>pytest --collect-only</code> in background. Right-click any test → &quot;Run Test&quot; or &quot;Debug Test&quot;. Enable &quot;Auto Re-run Tests on Save&quot; in Test Explorer settings for instant feedback on save.</p>
 <p><strong>Gotcha:</strong> The extension uses <code>pytest --collect-only</code> for discovery. If your tests have import-time side effects (e.g., <code>django.setup()</code> at module level, <code>factory_boy</code> registering factories at import time, or <code>celery</code> app autodiscovery), discovery will hang or crash. Fix: move side effects into <code>pytest_configure</code> hooks or <code>conftest.py</code> fixtures, or set <code>python.testing.pytestArgs: [&quot;--collect-only&quot;, &quot;-q&quot;, &quot;--ignore=problematic_module.py&quot;]</code> in settings.json to skip problematic modules during discovery.</p>
@@ -361,19 +407,72 @@ AttributeError: &#x27;AnonymousUser&#x27; object has no attribute &#x27;cart&#x2
 <hr>
 <h2>4. Even Better TOML — Extension ID: <code>tamasfe.even-better-toml</code></h2>
 <p><strong>Specific TOML errors it catches that VS Code&#x27;s built-in TOML support misses:</strong></p>
-<p>| Error | Built-in TOML | Even Better TOML |</p>
-<p>|-------|---------------|------------------|</p>
-<p>| Trailing comma in inline table | ❌ Misses | ✅ Catches: <code>{ key = &quot;val&quot;, }</code> |</p>
-<p>| Duplicate key in same table | ❌ Misses | ✅ Catches: <code>key = &quot;a&quot;</code> / <code>key = &quot;b&quot;</code> |</p>
-<p>| Invalid date format | ❌ Misses | ✅ Catches: <code>date = 2024-13-01</code> |</p>
-<p>| Bare string with special chars | ❌ Misses | ✅ Catches: <code>key = unquoted#comment</code> |</p>
-<p>| Mixed tabs/spaces in multiline string | ❌ Misses | ✅ Catches indentation mismatch |</p>
-<p>| Invalid escape in basic string | ❌ Misses | ✅ Catches: <code>path = &quot;C:\users&quot;</code> |</p>
-<p>| Duplicate table header | ❌ Misses | ✅ Catches: <code>[tool.ruff]</code> x2 |</p>
-<p>| Invalid key name (dots in bare key) | ❌ Misses | ✅ Catches: <code>tool.ruff.lint.select = [...]</code> without quotes |</p>
-<p>| Inline table with trailing comma | ❌ Misses | ✅ Catches |</p>
-<p>| Array with mixed types | ❌ Misses | ✅ Warns: <code>[1, &quot;two&quot;, 3.0]</code> |</p>
-<p>| Unicode BOM in file | ❌ Misses | ✅ Warns |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Error</th>
+      <th style="text-align: left;">Built-in TOML</th>
+      <th style="text-align: left;">Even Better TOML</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Trailing comma in inline table</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>{ key = &quot;val&quot;, }</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Duplicate key in same table</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>key = &quot;a&quot;</code> / <code>key = &quot;b&quot;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Invalid date format</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>date = 2024-13-01</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Bare string with special chars</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>key = unquoted#comment</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Mixed tabs/spaces in multiline string</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches indentation mismatch</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Invalid escape in basic string</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>path = &quot;C:\users&quot;</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Duplicate table header</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>[tool.ruff]</code> x2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Invalid key name (dots in bare key)</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches: <code>tool.ruff.lint.select = [...]</code> without quotes</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Inline table with trailing comma</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Catches</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Array with mixed types</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Warns: <code>[1, &quot;two&quot;, 3.0]</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Unicode BOM in file</td>
+      <td style="text-align: left;">❌ Misses</td>
+      <td style="text-align: left;">✅ Warns</td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Real pyproject.toml errors caught in production Django project:</strong></p>
 <pre><code># ERROR 1: Duplicate key — built-in misses this
 [tool.ruff.lint]
@@ -714,14 +813,47 @@ done</code></pre>
 <li><strong>IntelliSense latency:</strong> Each language server adds to completion ranking</li>
 </ul>
 <p><strong>Real measurement (VS Code 1.90, M2 Pro, 32GB, 45 extensions → 12 extensions):</strong></p>
-<p>| Metric | 45 Extensions | 12 Extensions (curated) |</p>
-<p>|--------|---------------|-------------------------|</p>
-<p>| Cold start (window open) | 4.2s | <strong>1.1s</strong> |</p>
-<p>| Window restore (session) | 3.8s | <strong>0.9s</strong> |</p>
-<p>| Memory (idle, 2 windows) | 2.8 GB | <strong>890 MB</strong> |</p>
-<p>| Completion trigger latency | 180ms | <strong>42ms</strong> |</p>
-<p>| File open (10k lines TS) | 1.4s | <strong>0.6s</strong> |</p>
-<p>| Search across workspace | 2.1s | <strong>0.8s</strong> |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Metric</th>
+      <th style="text-align: left;">45 Extensions</th>
+      <th style="text-align: left;">12 Extensions (curated)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;">Cold start (window open)</td>
+      <td style="text-align: left;">4.2s</td>
+      <td style="text-align: left;"><strong>1.1s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Window restore (session)</td>
+      <td style="text-align: left;">3.8s</td>
+      <td style="text-align: left;"><strong>0.9s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Memory (idle, 2 windows)</td>
+      <td style="text-align: left;">2.8 GB</td>
+      <td style="text-align: left;"><strong>890 MB</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Completion trigger latency</td>
+      <td style="text-align: left;">180ms</td>
+      <td style="text-align: left;"><strong>42ms</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">File open (10k lines TS)</td>
+      <td style="text-align: left;">1.4s</td>
+      <td style="text-align: left;"><strong>0.6s</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Search across workspace</td>
+      <td style="text-align: left;">2.1s</td>
+      <td style="text-align: left;"><strong>0.8s</strong></td>
+    </tr>
+  </tbody>
+</table>
 <p><strong>Extensions to uninstall unless you use them daily:</strong></p>
 <ul>
 <li><code>ms-azuretools.vscode-docker</code> (unless you Docker daily)</li>
@@ -740,13 +872,54 @@ done</code></pre>
 <p><strong>Rule:</strong> If you haven&#x27;t used an extension&#x27;s feature in 2 weeks, uninstall it. Run <code>code --list-extensions --show-versions</code> monthly, audit each.</p>
 <hr>
 <h2>Summary: The 5 Extensions That Earn Their Keep</h2>
-<p>| Extension | ID | Replaces | Setup Time | Gotcha |</p>
-<p>|-----------|-----|----------|------------|--------|</p>
-<p>| <strong>Ruff</strong> | <code>charliermarsh.ruff</code> | flake8 + black + isort + pyupgrade + bandit + pydocstyle + pyflakes + pyupgrade + eradicate + flake8-<em> + pylint-</em> | 2 min (paste pyproject.toml) | Trailing commas in dataclasses/fixtures |</p>
-<p>| <strong>Python Test Explorer</strong> | <code>littlefoxteam.vscode-python-test-adapter</code> | Built-in test explorer (slow, broken on Django) | 1 min (configure pytest.ini) | Import-time side effects break discovery |</p>
-<p>| <strong>Error Lens</strong> | <code>usernamehw.errorlens</code> | Hover-to-see-diagnostics workflow | 30 sec (enable in settings) | Noise on large files — filter by language |</p>
-<p>| <strong>Even Better TOML</strong> | <code>tamasfe.even-better-toml</code> | Built-in TOML (misses 10+ error types) | 0 sec (auto-activates) | Strict TOML 1.0 — legacy files flag errors |</p>
-<p>| <strong>ShellCheck</strong> | <code>timonwong.shellcheck</code> | Manual shell debugging | 1 min (install binary + extension) | Assumes bash — add <code># shellcheck shell=sh</code> for POSIX |</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left;">Extension</th>
+      <th style="text-align: left;">ID</th>
+      <th style="text-align: left;">Replaces</th>
+      <th style="text-align: left;">Setup Time</th>
+      <th style="text-align: left;">Gotcha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left;"><strong>Ruff</strong></td>
+      <td style="text-align: left;"><code>charliermarsh.ruff</code></td>
+      <td style="text-align: left;">flake8 + black + isort + pyupgrade + bandit + pydocstyle + pyflakes + pyupgrade + eradicate + flake8-<em> + pylint-</em></td>
+      <td style="text-align: left;">2 min (paste pyproject.toml)</td>
+      <td style="text-align: left;">Trailing commas in dataclasses/fixtures</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Python Test Explorer</strong></td>
+      <td style="text-align: left;"><code>littlefoxteam.vscode-python-test-adapter</code></td>
+      <td style="text-align: left;">Built-in test explorer (slow, broken on Django)</td>
+      <td style="text-align: left;">1 min (configure pytest.ini)</td>
+      <td style="text-align: left;">Import-time side effects break discovery</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Error Lens</strong></td>
+      <td style="text-align: left;"><code>usernamehw.errorlens</code></td>
+      <td style="text-align: left;">Hover-to-see-diagnostics workflow</td>
+      <td style="text-align: left;">30 sec (enable in settings)</td>
+      <td style="text-align: left;">Noise on large files — filter by language</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>Even Better TOML</strong></td>
+      <td style="text-align: left;"><code>tamasfe.even-better-toml</code></td>
+      <td style="text-align: left;">Built-in TOML (misses 10+ error types)</td>
+      <td style="text-align: left;">0 sec (auto-activates)</td>
+      <td style="text-align: left;">Strict TOML 1.0 — legacy files flag errors</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><strong>ShellCheck</strong></td>
+      <td style="text-align: left;"><code>timonwong.shellcheck</code></td>
+      <td style="text-align: left;">Manual shell debugging</td>
+      <td style="text-align: left;">1 min (install binary + extension)</td>
+      <td style="text-align: left;">Assumes bash — add <code># shellcheck shell=sh</code> for POSIX</td>
+    </tr>
+  </tbody>
+</table>
 <p>**Total install time: ~5 minutes.</p>
 <p>Total tools replaced: 16+.</p>
 <p>Measurable speedup: 10–100× on linting, 4–20× on test discovery, 15× on debug cycles.</p>
