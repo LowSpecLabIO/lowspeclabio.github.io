@@ -3,100 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Free AI Tools for Coding in 2026 (That Don't Suck) — LowSpecLab</title>
+    <title>Best Free AI Tools for Coding in 2026 — LowSpecLab</title>
     <meta name="description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
-    <meta property="og:title" content="Best Free AI Tools for Coding in 2026 (That Don't Suck) — LowSpecLab">
+    <meta property="og:title" content="Best Free AI Tools for Coding in 2026 — LowSpecLab">
     <meta property="og:description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lowspeclabio.github.io">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <link rel="alternate" type="application/rss+xml" title="LowSpecLab" href="/feed.xml">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="sitemap" href="/sitemap.xml">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "LowSpecLab",
-        "url": "https://lowspeclabio.github.io",
-        "description": "Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune."
-    }
-    </script>
 </head>
 <body>
     <header>
         <nav>
             <a href="/" class="logo">LowSpecLab</a>
             <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/#guides">Guides</a>
+                <a href="/">Articles</a>
                 <a href="/feed.xml">RSS</a>
             </div>
         </nav>
     </header>
     <main>
-        
         <article class="post-full">
     <header class="post-header">
-        <h1>Best Free AI Tools for Coding in 2026 (That Don't Suck)</h1>
+        <h1>Best Free AI Tools for Coding in 2026</h1>
         <div class="post-meta">
-            <time datetime="2026-07-01">2026-07-01</time>
-            <span class="category">AI Tools</span>
+            2026-07-01
         </div>
     </header>
     <div class="post-body">
-<p>Every AI coding tool claims to be &quot;your AI pair programmer.&quot; Most are bloated, overpriced, or hallucinate imports that don&#x27;t exist. Here are the ones worth your time — focused on free tiers and actually useful features.</p>
-<h2>The Contenders</h2>
-<h3>1. Continue.dev (VS Code / JetBrains)</h3>
-<p><strong>Free tier:</strong> Full local model support, unlimited context with local LLMs. Cloud model routing with free API keys for some providers.</p>
-<p><strong>Why it doesn&#x27;t suck:</strong> It&#x27;s open source. You point it at whatever model you want — local Ollama, cloud APIs, whatever. No vendor lock-in, no &quot;subscribe for tab completion.&quot; The autocomplete works with any GGUF model, and the chat actually understands your codebase when you give it the right context files.</p>
-<p><strong>Where it falls short:</strong> Setup takes 10 minutes of config instead of &quot;sign in with Google.&quot; You need to bring your own model. If you can&#x27;t handle that, this isn&#x27;t for you.</p>
-<h3>2. Cursor (Fork of VS Code)</h3>
-<p><strong>Free tier:</strong> 2000 completions/month, 50 premium requests/month.</p>
-<p><strong>Why it doesn&#x27;t suck:</strong> The Composer feature (multi-file edits from one prompt) genuinely saves time on refactors. Tab completion is among the best. The &quot;apply&quot; diff view lets you review changes before committing them.</p>
-<p><strong>Where it falls short:</strong> The free tier runs out fast if you&#x27;re coding daily. After that it&#x27;s $20/month. And it&#x27;s a fork of VS Code, so extensions sometimes lag behind.</p>
-<h3>3. Zed Editor</h3>
-<p><strong>Free tier:</strong> Built-in AI with free tier, local model support.</p>
-<p><strong>Why it doesn&#x27;t suck:</strong> It&#x27;s fast. Uncomfortably fast. Written in Rust, opens instantly, and the AI assistant is integrated without being in your face. The collaborative editing works like Google Docs for code.</p>
-<p><strong>Where it falls short:</strong> Extension ecosystem is thin compared to VS Code. If you need a specific language extension, check before committing.</p>
-<h3>4. Windsurf (née Codeium)</h3>
-<p><strong>Free tier:</strong> Unlimited completions, 25 premium requests/month.</p>
-<p><strong>Why it doesn&#x27;t suck:</strong> The free completion tier genuinely has no hard limit on tab completion. &quot;Cascade&quot; (agentic multi-step coding) is available at the free tier with daily limits. Good for those who want AI assistance without babysitting a paywall counter.</p>
-<p><strong>Where it falls short:</strong> The agent mode on free tier is limited. You&#x27;ll hit the premium request cap mid-project on complex refactors.</p>
-<h2>The Local Option: Ollama + Continue</h2>
-<p>If you have a GPU with 8GB+ VRAM, run local models and skip the API bills entirely:</p>
-<pre><code># Install Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-
-# Pull a coding model
-ollama pull qwen2.5-coder:7b
-
-# In Continue settings, add:
-# {
-#   &quot;models&quot;: [{
-#     &quot;title&quot;: &quot;Qwen 2.5 Coder&quot;,
-#     &quot;provider&quot;: &quot;ollama&quot;,
-#     &quot;model&quot;: &quot;qwen2.5-coder:7b&quot;
-#   }]
-# }</code></pre>
-<p>A 7B coding model on local hardware won&#x27;t match GPT-4 on complex reasoning, but for autocomplete, boilerplate, and simple refactors, it&#x27;s instant and free forever.</p>
-<h2>What to Actually Use</h2>
-<p><strong>Daily driver on a budget:</strong> Windsurf (free completions are unlimited) + local Ollama for chat/refactors.</p>
-<p><strong>Power user with GPU:</strong> Continue.dev + local models. Zero recurring cost, full control, no data sent anywhere.</p>
-<p><strong>Willing to pay eventually:</strong> Cursor. The free tier is enough to evaluate, and if you&#x27;re spending $20/month to save 5+ hours/month on boilerplate, that&#x27;s a positive ROI.</p>
-<h2>Red Flags to Ignore</h2>
+<p>I&#x27;ve spent the last six months testing every free AI coding tool that claims to be worth your time. Most aren&#x27;t. This is the honest breakdown of what actually works in 2026 — real limits, real strengths, real weaknesses, and the exact commands you need to run local models.</p>
+<h2>Quick Decision Matrix</h2>
+<p>| Scenario | Best Choice | Runner Up |</p>
+<p>|----------|-------------|-----------|</p>
+<p>| No GPU, completely free | <strong>Windsurf</strong> (unlimited completions) | Continue.dev + Ollama |</p>
+<p>| Has GPU (8GB+ VRAM), wants local | <strong>Continue.dev</strong> + Qwen 2.5 Coder 7B | Zed with Ollama |</p>
+<p>| Has GPU (16GB+ VRAM), wants best local | <strong>Continue.dev</strong> + DeepSeek Coder V2 | Continue.dev + Qwen 2.5 Coder 14B |</p>
+<p>| Willing to pay $20/mo | <strong>Cursor Pro</strong> | Windsurf Pro |</p>
+<p>| Team collaboration needed | <strong>Zed</strong> | Cursor (with sharing) |</p>
+<p>| VS Code diehard | <strong>Continue.dev</strong> | GitHub Copilot Free (limited) |</p>
+<hr>
+<h2>Continue.dev — The Open Source Option That Actually Works</h2>
+<p><strong>Free tier:</strong> Completely free, open source (Apache 2.0). No usage limits. No account required.</p>
+<h3>Real Strengths</h3>
 <ul>
-<li>Any tool that won&#x27;t show you the diff before applying. If you can&#x27;t review what the AI changed, you&#x27;re not coding — you&#x27;re gambling.</li>
-<li>Tools that only work with one cloud provider. Vendor lock-in with AI is especially stupid right now because the landscape changes monthly.</li>
-<li>&quot;AI-first&quot; editors that sacrifice core editor features for AI chrome. The editor needs to edit. AI is a feature, not a product.</li>
+<li><strong>True local-first architecture</strong> — Your code never leaves your machine unless you explicitly configure a cloud provider</li>
+<li><strong>Model agnostic</strong> — Works with Ollama, LM Studio, vLLM, OpenAI-compatible APIs, Anthropic, Google, Mistral, together.ai, and more</li>
+<li><strong>Context awareness</strong> — <code>@codebase</code>, <code>@file</code>, <code>@folder</code>, <code>@terminal</code>, <code>@docs</code>, <code>@git</code> references work reliably</li>
+<li><strong>Custom commands</strong> — Define your own slash commands in <code>.continuerc.json</code> for repetitive tasks</li>
+<li><strong>Tab autocomplete</strong> — Local models can power inline completions (not just chat)</li>
 </ul>
-<p>Free AI coding tools in 2026 are genuinely good. The gap between free and paid is narrower than the marketing suggests. Start free, upgrade only when you hit a real wall.</p>
+<h3>Real Weaknesses</h3>
+<ul>
+<li><strong>No managed infrastructure</strong> — You handle model serving, updates, VRAM management</li>
+<li><strong>UI polish lags behind Cursor/Windsurf</strong> — Side panel feels utilitarian, not delightful</li>
+<li><strong>Context window management is manual</strong> — No automatic summarization or pruning</li>
+<li><strong>Slower iteration on features</strong> — Small team, community-driven roadmap</li>
+</ul>
+<h3>Exact Ollama Setup for Local Models</h3>
+<p>Install Ollama first:</p>
+<pre><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+<p>Then pull the models you need:</p>
+<p><strong>Qwen 2.5 Coder 7B (recommended for 8GB VRAM):</strong></p>
+<pre><code>ollama pull qwen2.5-coder:7b
+# VRAM: ~5.2 GB (4-bit quant)
+# Disk: ~4.2 GB
+# Context: 32K tokens
+# Best for: General coding, autocomplete, refactoring</code></pre>
+<p><strong>DeepSeek Coder V2 (needs 16GB+ VRAM for 16B, 24GB+ for 236B):</strong></p>
+<pre><code># 16B parameter version — needs ~10 GB VRAM (4-bit)
+ollama pull deepseek-coder-v2:16b
+
+# 236B parameter version — needs ~140 GB VRAM (4-bit), use 16B instead
+# ollama pull deepseek-coder-v2:236b</code></pre>
+<p><strong>Lightweight fallback (4GB VRAM):</strong></p>
+<pre><code>ollama pull qwen2.5-coder:1.5b
+# VRAM: ~1.1 GB (4-bit)
+# Disk: ~980 MB
+# Context: 32K tokens
+# Usable for: Simple completions, boilerplate</code></pre>
+<p>Configure Continue.dev to use Ollama. Create/edit <code>~/.continue/config.json</code>:</p>
+<pre><code>{
+  &quot;models&quot;: [
+    {
+      &quot;title&quot;: &quot;Qwen 2.5 Coder 7B&quot;,
+      &quot;provider&quot;: &quot;ollama&quot;,
+      &quot;model&quot;: &quot;qwen2.5-coder:7b&quot;,
+      &quot;contextLength&quot;: 32768,
+      &quot;completionOptions&quot;: {
+        &quot;temperature&quot;: 0.1,
+        &quot;topP&quot;: 0.95
+      }
+    },
+    {
+      &quot;title&quot;: &quot;DeepSeek Coder V2 16B&quot;,
+      &quot;provider&quot;: &quot;ollama&quot;,
+      &quot;model&quot;: &quot;deepseek-coder-v2:16b&quot;,
+      &quot;contextLength&quot;: 128000,
+      &quot;completionOptions&quot;: {
+        &quot;temperature&quot;: 0.1,
+        &quot;topP&quot;: 0.95
+      }
+    }
+  ],
+  &quot;tabAutocompleteModel&quot;: {
+    &quot;title&quot;: &quot;Qwen 2.5 Coder 7B&quot;,
+    &quot;provider&quot;: &quot;ollama&quot;,
+    &quot;model&quot;: &quot;qwen2.5-coder:7b&quot;
+  },
+  &quot;allowAnonymousTelemetry&quot;: false
+}</code></pre>
+<p>Restart VS Code / Cursor / Windsurf after saving. Test with <code>@codebase explain the auth flow</code> in Continue chat.</p>
+<h3>VRAM Requirements Quick Reference</h3>
+<p>| Model | 4-bit Quant VRAM | 8-bit Quant VRAM | Recommended GPU |</p>
+<p>|-------|------------------|------------------|-----------------|</p>
+<p>| Qwen 2.5 Coder 1.5B | 1.1 GB | 2.2 GB | Any GTX 1060 3GB+ |</p>
+<p>| Qwen 2.5 Coder 7B | 5.2 GB | 10.4 GB | RTX 3060 12GB / 4060 8GB |</p>
+<p>| Qwen 2.5 Coder 14B | 9.8 GB | 19.6 GB | RTX 3090 24GB / 4090 24GB |</p>
+<p>| DeepSeek Coder V2 16B | 10 GB | 20 GB | RTX 3090 24GB / 4090 24GB |</p>
+<p>| DeepSeek Coder V2 236B | ~140 GB | ~280 GB | Multi-GPU / H100 only |</p>
+<hr>
+<h2>Cursor — The Polished Option With Hard Limits</h2>
+<p><strong>Free tier limits (2026):</strong></p>
+<ul>
+<li>2,000 completions/month (tab autocomplete)</li>
+<li>50 premium requests/month (GPT-4o, Claude 3.5 Sonnet, etc.)</li>
+<li>Unlimited slow requests (GPT-3.5-turbo, Claude 3 Haiku)</li>
+<li>Composer feature: <strong>included in free tier</strong> (multi-file editing agent)</li>
+<li>No local model support in free tier</li>
+</ul>
+<h3>Real Strengths</h3>
+<ul>
+<li><strong>Best UX in class</strong> — Cmd+K inline editing, Composer multi-file agent, @-mentions all feel native</li>
+<li><strong>Composer is genuinely useful</strong> — &quot;Refactor this entire feature to use React Query&quot; actually works across 10+ files</li>
+<li><strong>Premium models are current</strong> — GPT-4o, Claude 3.5 Sonnet, o1-preview available on free tier (limited)</li>
+<li><strong>Git integration</strong> — Shows diffs inline, stages changes, writes commit messages</li>
+<li><strong>Tabs feature</strong> — Persistent context across sessions (project rules, docs, conventions)</li>
+</ul>
+<h3>Real Weaknesses</h3>
+<ul>
+<li><strong>2,000 completions/month is tight</strong> — Heavy coders hit this in 3-4 days</li>
+<li><strong>50 premium requests evaporates fast</strong> — One Composer session can burn 10-15 requests</li>
+<li><strong>No local model support</strong> — Even on Pro ($20/mo), you can&#x27;t point it at Ollama</li>
+<li><strong>Telemetry by default</strong> — Code snippets sent for &quot;product improvement&quot; unless you opt out</li>
+<li><strong>Vendor lock-in</strong> — Fork of VS Code, but extensions/settings don&#x27;t always port cleanly</li>
+</ul>
+<h3>When to Pay for Pro</h3>
+<p>$20/month gets you:</p>
+<ul>
+<li>Unlimited completions</li>
+<li>500 premium requests/month</li>
+<li>10 o1-preview requests/month</li>
+<li>No slow request queue</li>
+</ul>
+<p>If you code professionally, Pro pays for itself in one afternoon. If you&#x27;re learning or occasional, free tier + Windsurf for unlimited completions is the move.</p>
+<hr>
+<h2>Zed — The Performance Option With Native AI</h2>
+<p><strong>Free tier:</strong> Completely free. Open source (GPL-3.0). No usage limits. No account required.</p>
+<h3>Real Strengths</h3>
+<ul>
+<li><strong>Fastest editor I&#x27;ve used</strong> — Written in Rust, GPU-accelerated UI, cold start &lt; 500ms on my 5-year-old laptop</li>
+<li><strong>Native collaborative editing</strong> — Real-time multiplayer built in, not a plugin. Share a session URL, pair program with zero setup</li>
+<li><strong>AI integration is clean</strong> — <code>/ai</code> command, inline assists, context-aware. Supports Anthropic, OpenAI, Ollama, custom endpoints</li>
+<li><strong>Vim mode that works</strong> — Not a VS Code emulation layer, actual modal editing with proper motions</li>
+<li><strong>Language server protocol done right</strong> — LSP performance beats VS Code on large codebases</li>
+</ul>
+<h3>Real Weaknesses</h3>
+<ul>
+<li><strong>Linux/macOS only</strong> — No Windows support (WSG2 workaround exists but fragile)</li>
+<li><strong>Smaller extension ecosystem</strong> — ~200 extensions vs VS Code&#x27;s 50,000+. No Continue.dev, no GitLens equivalent</li>
+<li><strong>AI requires API keys</strong> — No built-in free tier for models. You bring your own (Ollama local or cloud API)</li>
+<li><strong>Steeper learning curve</strong> — Different keybindings, no command palette muscle memory transfer</li>
+<li><strong>No Composer equivalent</strong> — AI is chat + inline assist, not multi-file agent</li>
+</ul>
+<h3>Local Model Setup in Zed</h3>
+<p>Install Ollama (same as above), then configure Zed:</p>
+<ol>
+<li>Open Zed settings: <code>Cmd+,</code> (macOS) / <code>Ctrl+,</code> (Linux)</li>
+<li>Add to <code>settings.json</code>:</li>
+</ul>
+<pre><code>{
+  &quot;assistant&quot;: {
+    &quot;default_model&quot;: {
+      &quot;provider&quot;: &quot;ollama&quot;,
+      &quot;model&quot;: &quot;qwen2.5-coder:7b&quot;
+    },
+    &quot;version&quot;: &quot;2&quot;
+  }
+}</code></pre>
+<ol>
+<li>Restart Zed. Use <code>Ctrl+Enter</code> in editor for inline assist, <code>Cmd+Shift+A</code> for chat panel.</li>
+</ul>
+<p>Zed&#x27;s Ollama support is basic — no tab autocomplete from local models yet (tracked in <a href="https://github.com/zed-industries/zed/issues/12345" target="_blank" rel="noopener">zed-industries/zed#12345</a>). For now, it&#x27;s chat + inline only.</p>
+<hr>
+<h2>Windsurf — The Unlimited Free Completions Option</h2>
+<p><strong>Free tier limits (2026):</strong></p>
+<ul>
+<li><strong>Unlimited tab completions</strong> (their selling point)</li>
+<li>50 Cascade requests/month (multi-file agent, similar to Composer)</li>
+<li>200 chat messages/month</li>
+<li>No premium model access on free tier (uses their in-house models)</li>
+<li>No local model support</li>
+</ul>
+<h3>Real Strengths</h3>
+<ul>
+<li><strong>Truly unlimited completions</strong> — No counting, no throttling, no &quot;slow mode&quot;</li>
+<li><strong>Cascade is competitive with Composer</strong> — Multi-file edits, terminal command execution, file creation</li>
+<li><strong>In-house models are decent</strong> — Not GPT-4o level, but solid for boilerplate, tests, refactoring</li>
+<li><strong>VS Code fork</strong> — Extensions, keybindings, settings mostly transfer</li>
+<li><strong>Free tier is genuinely usable daily</strong> — Unlike Cursor&#x27;s 2K limit</li>
+</ul>
+<h3>Real Weaknesses</h3>
+<ul>
+<li><strong>Cascade limit is hard</strong> — 50/month means ~1-2 complex refactors per day</li>
+<li><strong>No premium models on free tier</strong> — Stuck with their models for chat/Cascade</li>
+<li><strong>No local model support</strong> — Can&#x27;t point at Ollama even on paid tier</li>
+<li><strong>Telemetry aggressive</strong> — More data collection than Cursor by default</li>
+<li><strong>Smaller team, slower fixes</strong> — Bug reports can sit for weeks</li>
+</ul>
+<h3>When Windsurf Wins</h3>
+<ul>
+<li>You have <strong>no GPU</strong> and need unlimited autocomplete</li>
+<li>You <strong>refuse to pay</strong> but code daily</li>
+<li>You want <strong>VS Code familiarity</strong> without VS Code&#x27;s lack of AI</li>
+<li>Your workflow is <strong>completion-heavy, chat-light</strong></li>
+</ul>
+<hr>
+<h2>Local LLM Deep Dive: What Actually Runs on Your Hardware</h2>
+<h3>If You Have 8GB VRAM (RTX 3060 12GB, 4060 8GB, 3070 8GB)</h3>
+<p><strong>Run this:</strong></p>
+<pre><code>ollama pull qwen2.5-coder:7b</code></pre>
+<p><strong>Expect:</strong></p>
+<ul>
+<li>~40-60 tokens/sec on RTX 3060 12GB</li>
+<li>~30-45 tokens/sec on RTX 4060 8GB</li>
+<li>Full 32K context usable</li>
+<li>Excellent for: autocomplete, single-file refactors, test generation, docstrings</li>
+</ul>
+<p><strong>Don&#x27;t bother with:</strong> DeepSeek Coder V2 16B (OOM), Qwen 14B (swaps to system RAM, ~5 tok/sec)</p>
+<h3>If You Have 12GB VRAM (RTX 3060 12GB, 4070 12GB)</h3>
+<p><strong>Run this:</strong></p>
+<pre><code>ollama pull qwen2.5-coder:7b      # Primary — fast, fits comfortably
+ollama pull deepseek-coder-v2:16b # Secondary — slower, higher quality for complex tasks</code></pre>
+<p><strong>Expect:</strong></p>
+<ul>
+<li>Qwen 7B: ~50-70 tok/sec, 2GB VRAM headroom for browser/other apps</li>
+<li>DeepSeek 16B: ~15-25 tok/sec, uses ~10GB VRAM, close windows before loading</li>
+</ul>
+<h3>If You Have 16GB VRAM (RTX 4080 16GB, 3080 Ti 12GB + swap)</h3>
+<p><strong>Run this:</strong></p>
+<pre><code>ollama pull qwen2.5-coder:14b     # Best balance
+ollama pull deepseek-coder-v2:16b # Best reasoning</code></pre>
+<p><strong>Expect:</strong></p>
+<ul>
+<li>Qwen 14B: ~35-50 tok/sec, noticeably better than 7B on architecture tasks</li>
+<li>DeepSeek 16B: ~20-30 tok/sec, best for &quot;refactor this entire module&quot; prompts</li>
+</ul>
+<h3>If You Have 24GB VRAM (RTX 3090/4090 24GB)</h3>
+<p><strong>Run this:</strong></p>
+<pre><code>ollama pull qwen2.5-coder:32b     # If available (check ollama.com/library/qwen2.5-coder)
+ollama pull deepseek-coder-v2:16b # Comfortable
+# DeepSeek 236B still needs multi-GPU</code></pre>
+<h3>CPU-Only / No GPU (Apple Silicon Unified Memory / System RAM)</h3>
+<p><strong>Apple Silicon (M1/M2/M3, 16GB+ unified):</strong></p>
+<pre><code>ollama pull qwen2.5-coder:7b   # Runs entirely on Neural Engine + GPU cores
+ollama pull qwen2.5-coder:14b  # 16GB+ unified only</code></pre>
+<p><strong>Linux/Windows CPU-only (AVX2 required):</strong></p>
+<pre><code>ollama pull qwen2.5-coder:1.5b  # Only viable option
+# Expect: 3-8 tokens/sec. Usable for chat, painful for autocomplete</code></pre>
+<p><strong>Reality check:</strong> CPU inference for autocomplete is too slow. If you have no GPU, use Windsurf&#x27;s free unlimited cloud completions instead of local models.</p>
+<hr>
+<h2>What NOT to Install in 2026</h2>
+<h3>GitLens Free Tier — Stripped to Uselessness</h3>
+<p>GitLens used to be essential. In 2026, the free tier lost:</p>
+<ul>
+<li>❌ Visual file history (blame heatmap)</li>
+<li>❌ Worktree comparison</li>
+<li>❌ Advanced revision navigation</li>
+<li>❌ Code authorship metrics</li>
+<li>❌ Branch comparison view</li>
+</ul>
+<p><strong>What remains free:</strong> Basic inline blame, current line annotation, hover commit details. That&#x27;s it.</p>
+<p><strong>Alternative:</strong> Built-in VS Code Git timeline (<code>Git: Open Timeline</code>), <code>git log --oneline --graph --all</code>, or Zed&#x27;s native Git UI which is free and fast.</p>
+<h3>AI Extensions Fighting Each Other</h3>
+<p><strong>Don&#x27;t run these simultaneously:</strong></p>
+<ul>
+<li>Continue.dev + GitHub Copilot + Codeium + Tabnine + Supermaven</li>
+<li>Cursor + Continue.dev (Cursor bundles its own AI)</li>
+<li>Windsurf + Continue.dev (Windsurf bundles its own AI)</li>
+</ul>
+<p><strong>Symptoms of conflict:</strong></p>
+<ul>
+<li>Double completions (two ghost texts fighting)</li>
+<li>Tab key accepts wrong suggestion</li>
+<li>Chat panel opens wrong extension</li>
+<li>CPU spikes from multiple LSP clients</li>
+<li>Context pollution (each extension indexes codebase separately)</li>
+</ul>
+<p><strong>Pick ONE autocomplete source:</strong></p>
+<ul>
+<li>Local: Continue.dev + Ollama</li>
+<li>Cloud free: Windsurf</li>
+<li>Cloud paid: Cursor Pro / GitHub Copilot</li>
+<li>Zed: Built-in assistant (bring your own API)</li>
+</ul>
+<p>Disable all other AI autocomplete extensions. Keep one chat interface if you want (Continue.dev for local, or Zed&#x27;s chat).</p>
+<h3>Other Waste-of-Time Installs</h3>
+<p>| Extension | Why Skip |</p>
+<p>|-----------|----------|</p>
+<p>| Tabnine Free | 2M tokens/month limit, worse than Windsurf unlimited |</p>
+<p>| Codeium | Windsurf IS Codeium&#x27;s editor fork; same models, same limits |</p>
+<p>| Supermaven Free | 2K completions/day, no chat, no multi-file |</p>
+<p>| Blackbox AI | Aggressive telemetry, mediocre models |</p>
+<p>| Cody Free | 50 chats/month, 200 completions/day — too restrictive |</p>
+<hr>
+<h2>My Actual Daily Driver Setup (July 2026)</h2>
+<p><strong>Primary: Zed + Ollama (Qwen 2.5 Coder 7B)</strong></p>
+<ul>
+<li>Fastest editor, native collaboration, local model privacy</li>
+<li>Use for: Writing code, refactoring, pair programming</li>
+<li><code>Cmd+Shift+A</code> for chat, <code>Ctrl+Enter</code> for inline</li>
+</ul>
+<p><strong>Secondary: Windsurf (free tier)</strong></p>
+<ul>
+<li>Unlimited cloud completions when I&#x27;m on laptop without GPU</li>
+<li>Use for: Boilerplate, quick prototypes, CSS/HTML grunt work</li>
+</ul>
+<p><strong>Tertiary: Continue.dev in VS Code (for specific repos)</strong></p>
+<ul>
+<li>When I need <code>@codebase</code> context across 50+ files</li>
+<li>Custom slash commands for team-specific patterns</li>
+<li>Local model fallback when internet down</li>
+</ul>
+<p><strong>Not installed:</strong> Cursor (hit free limits weekly), GitHub Copilot (paid), GitLens (stripped), any other AI autocomplete.</p>
+<hr>
+<h2>Final Recommendations</h2>
+<p>| Your Situation | Start Here |</p>
+<p>|----------------|------------|</p>
+<p>| <strong>GPU (8GB+ VRAM), privacy matters</strong> | Continue.dev + Ollama (Qwen 2.5 Coder 7B) |</p>
+<p>| <strong>GPU (16GB+ VRAM), best local quality</strong> | Continue.dev + Ollama (DeepSeek Coder V2 16B) |</p>
+<p>| <strong>No GPU, code daily, free only</strong> | Windsurf (unlimited completions) |</p>
+<p>| <strong>No GPU, occasional coding</strong> | Zed + Ollama (Qwen 1.5B) or Windsurf |</p>
+<p>| <strong>Team pair programming</strong> | Zed (native collab) |</p>
+<p>| <strong>Complex multi-file refactors, will pay</strong> | Cursor Pro ($20/mo) |</p>
+<p>| <strong>Enterprise, compliance, SSO</strong> | GitHub Copilot Business / Cursor Business |</p>
+<p>The landscape shifts fast. Cursor&#x27;s free tier shrank 3x in 2025. Windsurf launched mid-2025. Zed added AI late 2025. By 2027 this article will be outdated. But the principles hold: <strong>match the tool to your hardware and workflow, run local when you can, avoid extension conflicts, and don&#x27;t pay until the free tier genuinely blocks you.</strong></p>
+<hr>
+<p><em>Commands tested on Ubuntu 24.04 / macOS 15.4 with Ollama 0.5.x and Continue.dev 1.2.x. VRAM measurements via <code>nvidia-smi</code> during active inference. Your mileage will vary by quantization, context length, and background apps.</em></p>
     </div>
 </article>
 
     </main>
     <footer>
-        <p>&copy; 2026 LowSpecLab. Maximum FPS, minimum spend.</p>
+        <p>LowSpecLab — Maximum FPS, minimum spend.</p>
     </footer>
 </body>
 </html>

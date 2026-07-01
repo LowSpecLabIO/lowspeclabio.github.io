@@ -171,19 +171,16 @@ def build_site():
     post_tmpl = load_template('post')
     
     # ── Index page ──
-    hero = f'''<section class="hero">
-        <h1>{site['name']}</h1>
-        <p>{site['tagline']}</p>
-    </section>'''
+    hero = ''
     
-    posts_html = '<section id="guides" class="posts-grid">\n'
-    for p in posts[:12]:
-        posts_html += f'''<article class="post-card">
+    posts_html = '<ul class="post-list">\n'
+    for p in posts:
+        posts_html += f'''<li>
         <h2><a href="{BASE_PATH}/posts/{p['slug']}/">{p.get('title', 'Untitled')}</a></h2>
-        <time datetime="{p.get('date', '')}">{p.get('date', '')}</time>
-        <p>{p.get('excerpt', '')}</p>
-        </article>\n'''
-    posts_html += '</section>'
+        <div class="post-meta">{p.get('date', '')}</div>
+        <div class="post-excerpt">{p.get('excerpt', '')}</div>
+        </li>\n'''
+    posts_html += '</ul>'
     
     index_html = render_template(index_tmpl, posts=posts_html)
     full = render_template(base, site_name=site['name'], site_tagline=site['tagline'],
