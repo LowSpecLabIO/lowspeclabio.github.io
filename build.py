@@ -313,6 +313,18 @@ def render_template(tmpl, **kwargs):
         tmpl = tmpl.replace(f'{{{{ {key} }}}}', str(val))
     return tmpl
 
+def json_escape(s):
+    """Escape a string for safe inclusion in JSON string values."""
+    # Unescape HTML entities first for clean text
+    import html as _html
+    s = _html.unescape(str(s))
+    s = s.replace('\\', '\\\\')
+    s = s.replace('"', '\\"')
+    s = s.replace('\n', ' ')
+    s = s.replace('\r', ' ')
+    s = s.replace('\t', ' ')
+    return s
+
 # ── Build ─────────────────────────────────────────────────────────────────────
 
 def load_config(path='config.yaml'):
@@ -379,9 +391,16 @@ def build_site():
     
     # ── Individual posts ──
     for p in posts:
+        date_iso = str(p.get('date', ''))
+        page_url = f"{site['url']}{BASE_PATH}/posts/{p['slug']}/"
+
         post_content = render_template(post_tmpl,
                                        title=p.get('title', 'Untitled'),
                                        date=p.get('date', ''),
+                                       date_iso=date_iso,
+                                       page_url=page_url,
+                                       excerpt=json_escape(p.get('excerpt', '')),
+                                       title_json=json_escape(p.get('title', 'Untitled')),
                                        category=p.get('category', ''),
                                        body=p['body_html'],
                                        site_name=site['name'],

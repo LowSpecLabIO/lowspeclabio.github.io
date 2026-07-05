@@ -9,3 +9,29 @@
 {{{ body }}}
     </div>
 </article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title_json }}",
+  "datePublished": "{{ date_iso }}",
+  "dateModified": "{{ date_iso }}",
+  "author": {
+    "@type": "Person",
+    "name": "LowSpecLab"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LowSpecLab",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ base_path }}/images/logo.png"
+    }
+  },
+  "description": "{{ excerpt }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page_url }}"
+  }
+}
+</script>
