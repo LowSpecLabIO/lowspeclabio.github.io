@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proton GE vs Proton Experimental vs Proton: Which One Should You Actually Use? — LowSpecLab</title>
+    <meta name="description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <meta property="og:title" content="Proton GE vs Proton Experimental vs Proton: Which One Should You Actually Use? — LowSpecLab">
+    <meta property="og:description" content="Budget gaming, Linux gaming, and hardware optimization guides for rigs that don't cost a fortune.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lowspeclabio.github.io">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="LowSpecLab" href="/feed.xml">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="sitemap" href="/sitemap.xml">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">LowSpecLab</a>
+            <div class="nav-links">
+                <a href="/">Articles</a>
+                <a href="/feed.xml">RSS</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article class="post-full">
+    <header class="post-header">
+        <h1>Proton GE vs Proton Experimental vs Proton: Which One Should You Actually Use?</h1>
+        <div class="post-meta">
+            2026-07-06
+        </div>
+    </header>
+    <div class="post-body">
+<p>You installed Steam on Linux. You enabled Steam Play. Now you&#x27;re staring at a dropdown listing six different &quot;Proton&quot; options and wondering which one is supposed to make your game work. Proton. Proton Experimental. GE-Proton11-1. Proton 9.0. Proton Hotfix. What&#x27;s the difference, and does picking the wrong one matter?</p>
+<p>Yes, it matters. Picking the right one can be the difference between a game that crashes on launch and one that runs at 60 FPS. But the good news is the decision tree is simpler than the dropdown makes it look. Here&#x27;s what each one is, what they&#x27;re built for, and the actual rules for choosing.</p>
+<h2>The Three You Actually Need to Know</h2>
+<p>There are more than three Proton variants kicking around, but 90% of the time you&#x27;re choosing between these:</p>
+<p><strong>Proton (the numbered version).</strong> This is Valve&#x27;s stable, officially-supported compatibility tool. As of mid-2026 it sits at Proton 9.0-x. It&#x27;s the one Steam installs by default when you flip on Steam Play for a title. It&#x27;s the most tested, the least likely to break, and the one you should reach for first. Valve promotes fixes out of Experimental and into numbered Proton releases once they&#x27;re stable. When in doubt, use this.</p>
+<p><strong>Proton Experimental.</strong> Valve&#x27;s bleeding-edge branch. This is where new fixes live before they graduate to a numbered Proton release. It updates frequently — sometimes multiple times a week — and includes work that isn&#x27;t fully vetted yet. In January 2026, the bleeding-edge build string hit <code>experimental-bleeding-edge-10.-294104-20260113</code>, pushing the version to 10.0. There&#x27;s also a &quot;Bleeding Edge&quot; beta branch you can opt into via Steam&#x27;s properties for Proton Experimental if you want the absolute cutting edge. The wiki is blunt about it: it can eat your game prefix and saves. Use it when a game has a known fix that&#x27;s landed in Experimental but not yet in numbered Proton.</p>
+<p><strong>GE-Proton (Proton GE).</strong> A community-maintained fork, built by GloriousEggroll, a Red Hat engineer. The current version is <strong>GE-Proton11-1</strong>, released June 24, 2026. It&#x27;s rebased on top of Proton 11 bleeding-edge, and it folds in patches and fixes that Valve hasn&#x27;t merged yet — or won&#x27;t, because of upstream policy. GE is also where media foundation and video playback fixes tend to land first.</p>
+<h2>What Makes GE-Proton Different</h2>
+<p>GE-Proton isn&#x27;t a different engine. It&#x27;s Valve&#x27;s Proton with extra stuff bolted on. Specifically, it tracks the latest bleeding-edge Wine, DXVK, VKD3D-Proton, and DXVK-NVAPI git versions, plus a set of community patches:</p>
+<ul>
+<li><strong>Media Foundation / video playback fixes.</strong> The headline feature. Games with FMV cutscenes, embedded video, or DirectShow-based playback often need GE. Valve re-encodes some videos to work around the problem; GE implements upstream fixes.</li>
+<li><strong>Game-specific protonfixes.</strong> Controller fixes for DualShock 4 in BioShock 2 Remastered and Dragon&#x27;s Dogma: Dark Arisen, a libglesv2 patch for Duet Night Abyss under Wayland, a save-game fix for Dark Earth.</li>
+<li><strong>New in GE-Proton11-1:</strong> d7vk (DirectX 7 to Vulkan), a Discord bridge, optiscaler support, winealsa channel/speaker overrides, Star Citizen patches, VRChat webcam face tracking, and a native rsx3d library so older games like Tex Murphy no longer need third-party winetricks.</li>
+<li><strong>The big rework:</strong> GE-Proton11-1 gutted all gstreamer libraries and converted the quartz video path to use <code>quartz-&gt;winedmo-&gt;ffmpeg</code> instead. This is a 4-month effort that fixed video playback for roughly 80% of the games on the video-rework list — mostly Visual Novels and older titles that use DirectShow, ASF, or MPEG playback paths.</li>
+</ul>
+<p>That gstreamer-to-ffmpeg conversion is the reason GE-Proton11 is a generational jump, not just a version bump. If you had broken cutscenes on GE-Proton10, GE-Proton11-1 is worth installing now.</p>
+<h2>The Decision Tree</h2>
+<p>Stop guessing. Here&#x27;s the order to try:</p>
+<ol>
+<li><strong>Start with Proton 9.0 (or whatever the latest numbered Proton is).</strong> It&#x27;s the stable default. If it works, you&#x27;re done. Don&#x27;t &quot;optimize&quot; by trying other versions — stable and working beats experimental and slightly faster.</li>
+<li><strong>If Proton 9.0 doesn&#x27;t work, check ProtonDB.</strong> Search the game at protondb.com. The top-reported fix almost always tells you which Proton version other people used and what launch options or protontricks they needed.</li>
+<li><strong>Try Proton Experimental.</strong> If there&#x27;s a recent fix that hasn&#x27;t shipped in numbered Proton yet, Experimental has it. This is the safest &quot;I need something newer&quot; move.</li>
+<li><strong>Switch to GE-Proton11-1 if the game has:</strong> broken FMV/cutscenes, media foundation errors, audio desync in pre-rendered video, a known GE-only protonfix, or a report on ProtonDB specifically recommending GE.</li>
+<li><strong>Don&#x27;t use GE-Proton as your daily driver.</strong> It&#x27;s a compatibility tool for specific games, not a blanket upgrade. Install it, apply it per-game, leave Proton 9.0 as your global default. GE versions don&#x27;t get the same QA as Valve&#x27;s, and a new GE release can regress something that worked on the previous one.</li>
+</ol>
+<p>The counterintuitive part: GE-Proton is <em>not</em> &quot;Proton but faster.&quot; On most games, numbered Proton and GE-Proton perform within a frame or two of each other because they&#x27;re built on the same Wine/DXVK foundation. GE&#x27;s value is compatibility, not speed.</p>
+<h2>How to Install GE-Proton11-1</h2>
+<p>Two paths. The easy one first.</p>
+<h3>Method 1: ProtonUp-Qt</h3>
+<p>If you want a GUI and you want updates handled for you:</p>
+<pre><code>flatpak install flathub net.davidotek.pupgui2</code></pre>
+<p>Launch ProtonUp-Qt, pick Steam, choose &quot;GE-Proton&quot; from the version dropdown, and click install. Restart Steam. GE-Proton11-1 will now show up in the per-game compatibility tool list.</p>
+<p>ProtonUp-Qt also handles Lutris Wine-GE and Luxtorpeda versions, so it&#x27;s worth keeping around.</p>
+<h3>Method 2: Manual install</h3>
+<p>If you&#x27;re not using Flatpak, or you want a specific build:</p>
+<pre><code>mkdir -p ~/.steam/root/compatibilitytools.d
+cd /tmp
+wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton11-1/GE-Proton11-1.tar.gz
+tar -xf GE-Proton11-1.tar.gz -C ~/.steam/root/compatibilitytools.d/</code></pre>
+<p>Restart Steam. The version appears under the game&#x27;s Properties → Compatibility → &quot;Force the use of a specific Steam Play compatibility tool.&quot;</p>
+<p>If <code>compatibilitytools.d</code> doesn&#x27;t exist, create it — that&#x27;s where Steam looks for third-party Proton builds.</p>
+<p>On Steam Deck, the path is <code>~/.steam/root/compatibilitytools.d/</code> in Desktop Mode. Reboot or relaunch Steam in Gaming Mode after installing.</p>
+<h2>Games That Specifically Need GE</h2>
+<p>Concrete examples, as of mid-2026:</p>
+<ul>
+<li><strong>Persona 4 Arena Ultimax</strong> — extensionless ASF video files. Fixed natively in GE-Proton11-1 via the new quartz RenderFile path.</li>
+<li><strong>The Medium</strong> — previously needed audio hacks; GE-Proton11-1 removed the hacks and implemented a non-breaking solution.</li>
+<li><strong>Metal Gear Solid V</strong> — same story, audio fixes replaced with proper implementations.</li>
+<li><strong>Darksiders Warmastered Edition</strong> — video playback fixed from scratch in GE-Proton11-1.</li>
+<li><strong>Tex Murphy: Overseer</strong> — needs d7vk and the new native rsx3d library, both in GE-Proton11-1. Enables <code>PROTON_USE_D7VK=1</code> via protonfix.</li>
+<li><strong>Nukitashi 2</strong> — fixed from scratch, one of the harder cases.</li>
+<li><strong>Arknights Endfield</strong> — anti-cheat fix landed in GE-Proton10-29&#x27;s protonfixes.</li>
+<li><strong>Star Citizen</strong> — ongoing patches maintained in GE only.</li>
+<li><strong>VRChat</strong> (non-Steam) — webcam face tracking patch in GE-Proton11-1.</li>
+<li>A large bucket of Visual Novels sharing the same few engines — fixing one or two fixed the rest.</li>
+</ul>
+<p>The pattern: if a game has pre-rendered video, Japanese VN-style FMV, or an anti-cheat quirk that&#x27;s been in the GE protonfixes list, GE is the answer. If it&#x27;s a mainstream AAA title from the last few years that runs fine on Proton 9.0, GE won&#x27;t buy you anything.</p>
+<h2>When to Also Try Proton Experimental</h2>
+<p>Proton Experimental is the right move when a game was broken six months ago and you&#x27;re not sure if the fix landed. Valve&#x27;s experimental branch absorbs upstream Wine and DXVK commits faster than numbered Proton ships them. If a recent Wine commit fixes your game, Experimental has it before numbered Proton does.</p>
+<p>The catch: Experimental is a moving target. A fix lands today, a regression lands next week. If you switch a game to Experimental and it works, fine — but check back. Bugs introduced in Experimental can break things that worked on numbered Proton. Don&#x27;t set-and-forget Experimental across your whole library.</p>
+<h2>The Short Version</h2>
+<ul>
+<li><strong>Default:</strong> Proton 9.0. Always start here.</li>
+<li><strong>Need a newer fix not yet in 9.0:</strong> Proton Experimental.</li>
+<li><strong>FMV cutscene problems, media foundation errors, or a GE-specific protonfix:</strong> GE-Proton11-1.</li>
+<li><strong>Don&#x27;t blanket-apply GE or Experimental to everything.</strong> Treat both as targeted tools, not global upgrades.</li>
+<li><strong>Always check ProtonDB first</strong> when something breaks. Someone has already solved your problem and posted the exact Proton version + launch options.</li>
+</ul>
+<p>The dropdown looks like a menu because it is. Most of your library runs on the stable default. The rest is a small set of per-game overrides you&#x27;ll set once and forget.</p>
+<p>Install ProtonUp-Qt, keep GE-Proton11-1 around for the problem titles, and stop overthinking it.</p>
+    </div>
+</article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Proton GE vs Proton Experimental vs Proton: Which One Should You Actually Use?",
+  "datePublished": "2026-07-06",
+  "dateModified": "2026-07-06",
+  "author": {
+    "@type": "Person",
+    "name": "LowSpecLab"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LowSpecLab",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/logo.png"
+    }
+  },
+  "description": "You installed Steam on Linux. You enabled Steam Play. Now you're staring at a dropdown listing six different \"Proton\" options and wondering which one is supposed to make your game work. Proton. Proton Experimental. GE-Proton11-1. Proto…",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lowspeclabio.github.io/posts/proton-ge-vs-experimental-guide-2026/"
+  }
+}
+</script>
+
+    </main>
+    <footer>
+        <p>LowSpecLab — Maximum FPS, minimum spend.</p>
+    </footer>
+</body>
+</html>
